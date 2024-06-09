@@ -1,0 +1,176 @@
+'\" t
+.pc
+
+.TH CRATE 1 "2024-06-01" "1.0.0" "Crate programming language"
+
+.\" The name
+.SH NAME
+crate \- a java-like programming language for containerized programming and data analysis
+
+.\" The commands
+.SH SYNOPSIS
+.\" The commands
+.B crate
+.B build
+.RI [\| options \|]
+.RI FILES
+.br
+.B crate
+.B compile
+.RI [\| options \|]
+.RI FILES
+.br
+.B crate
+.B run
+.RI [\| options \|]
+.RI FILES
+.br
+.B crate
+.B arc
+.RI [\| options \|]
+.RI MAIN\-CLASS
+.br
+.B crate
+.B project
+.B init
+.RI [\| options \|]
+.RI NAME
+.br
+.B crate
+.B project
+.B refresh
+.RI NAME
+.br
+.B crate
+.B project
+.B reset
+.RI [\| options \|]
+.RI NAME
+.br
+.B crate
+.B project
+.B commit
+.RI [\| options \|]
+.RI NAME
+.br
+.B crate
+.B project
+.B add
+.RI [\| options \|]
+.RI NAME
+.RI FILES
+.br
+.B crate
+.B module
+.B install
+.RI [\| options \|]
+.RI URL
+.br
+.B crate
+.B module
+.B register
+.RI [\| options \|]
+.RI FILE
+
+.\" The description
+.SH DESCRIPTION
+.B crate
+is an
+.I unfinished
+programming language, so it 
+.I cannot 
+and 
+.I will not 
+do anything 
+.I except 
+parsing. 
+On the other hand, when it is completed, it will be a language geared toward containerized programming and data analysis. Moreover, the
+.B crate
+environment will provide an 
+.B arc
+function (which will compile a main class into an archive), and a
+.B project
+function (for use with crate projects). Lastly, the
+.B module
+function will be used to apply a third-party project to your code.
+
+
+.\" The examples
+.SH EXAMPLES
+
+Compile a sample program and optimize it for bundling
+.br
+.B crate
+.B compile
+Sample.crate --bundle
+
+.br
+Compile and run two sample programs with debug level 'info'
+.br
+.B crate
+.B build
+Sample.crate Sample2.crate --info
+
+.br
+Run a packaged program
+.br
+.B crate
+.B run
+-m com.project.Sample
+
+.br
+Bundle the main class found in the manifest, along with its dependencies, and produce the file mainclass.arc
+.br
+.B crate
+.B arc
+--manifest=META-INF/MANIFEST.MF
+
+.br
+Initialize a git-like project on branch 'development'
+.br
+.B crate
+.B project
+.B init
+-gb 'development'
+
+.br
+Add the current folder to the current project, but ignore the file to_ignore.txt
+.br
+.B crate
+.B project
+.B add
+\&. -i to_ignore.txt
+
+.br
+Install a plugin from the internet
+.br
+.B crate
+.B module
+.B install
+\&'www.example.com/module/module.arc'
+
+.br
+Register a sample plugin found on your computer
+.br
+.B crate
+.B plugin
+.B register
+mymodule/mymodule.arc
+
+.br
+Remove a sample plugin
+.br
+.B crate
+.B plugin
+.B uninstall
+mymodule
+
+.\" The overview
+.\" .SH OVERVIEW
+
+.\" The defaults
+.\" .SH DEFAULTS
+
+.\" The options
+.\" .SH OPTIONS
+
