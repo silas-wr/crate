@@ -37,11 +37,123 @@ public class Parse {
                 } else {
                     Err.err(cur_token.row, cur_token.col, "Unexpected const.");
                 }
-            } else if (cur_token.type == TokenTypes.TYPE) {
+            } else if (cur_token.type == TokenTypes.TCONST) {
                 completeable = false;
-                if (load_type == "BaseId" || load_type == "BaseConst") {
-                    cur_node = new Node(NodeTypes.STEM_TYPIFY, cur_node);
-                    load_type = "StemTypify";
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected CONST.");
+                }
+            } else if (cur_token.type == TokenTypes.TSTR) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected STR.");
+                }
+            } else if (cur_token.type == TokenTypes.TCHR) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected CHAR.");
+                }
+            } else if (cur_token.type == TokenTypes.TBYT) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected BYTE.");
+                }
+            } else if (cur_token.type == TokenTypes.TSHR) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected SHORT.");
+                }
+            } else if (cur_token.type == TokenTypes.TINT) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected INT.");
+                }
+            } else if (cur_token.type == TokenTypes.TFLT) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected DOUBLE.");
+                }
+            } else if (cur_token.type == TokenTypes.TLIS) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected LIST.");
+                }
+            } else if (cur_token.type == TokenTypes.TDIC) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected DICT.");
+                }
+            } else if (cur_token.type == TokenTypes.TSET) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected SET.");
+                }
+            } else if (cur_token.type == TokenTypes.TCDC) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected CDICT.");
+                }
+            } else if (cur_token.type == TokenTypes.TBLN) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected BOOLEAN.");
+                }
+            } else if (cur_token.type == TokenTypes.NULL) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected NULL.");
+                }
+            } else if (cur_token.type == TokenTypes.TTYP) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
+                } else {
+                    Err.err(cur_token.row, cur_token.col, "Unexpected TYPE.");
+                }
+            } else if (cur_token.type == TokenTypes.TALL) {
+                completeable = false;
+                if (load_type == "StemTypify") {
+                    cur_node = new Node(NodeTypes.GR_TYPIFY, cur_node, cur_token);
+                    load_type = "GRTypify";
                 } else {
                     Err.err(cur_token.row, cur_token.col, "Unexpected type symbol.");
                 }
