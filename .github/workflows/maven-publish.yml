@@ -3,7 +3,8 @@
 
 name: Maven Package
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,7 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-java@v4.2.1
-    - name: Set up JDK
       with:
         java-version: '21'
         distribution: 'oracle'
