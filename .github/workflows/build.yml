@@ -27,5 +27,4 @@ jobs:
 
       # Compile
       - name: Compile
-        run: chmod +x compile.sh
-        run: ./compile.sh
+        run: chmod +x compile.sh; ./compile.sh
