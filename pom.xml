@@ -1,0 +1,7 @@
+<project>
+  <modelVersion>0.0.1</modelVersion>
+ 
+  <groupId>com.crate.Main</groupId>
+  <artifactId>crate</artifactId>
+  <version>0</version>
+</project>
