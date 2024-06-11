@@ -22,6 +22,9 @@ jobs:
         distribution: 'oracle'
         cache: maven
 
+    - name: Build our Project
+      run: javac com/crate/Main.java
+    
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
