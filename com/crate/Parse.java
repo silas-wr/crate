@@ -9,7 +9,7 @@ public class Parse {
         Node cur_node = new Node();
         String load_type = "";
         Token cur_token;
-        boolean completeable = false;
+        boolean completeable = true;
         for (int tok = 0; tok < l.size(); tok ++) {
             cur_token = l.get(tok);
             if (cur_token.type == TokenTypes.ID) {
