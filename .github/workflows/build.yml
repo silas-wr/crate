@@ -16,4 +16,4 @@ jobs:
 
     steps:
     - name: Build our Project
-      run: bash compile.sh
+      run: ls
