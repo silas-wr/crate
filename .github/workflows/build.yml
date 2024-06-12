@@ -16,4 +16,4 @@ jobs:
 
     steps:
     - name: Build our Project
-      run: javac /home/runner/crate/crate/com/crate/Main.java
+      run: bash compile.sh
