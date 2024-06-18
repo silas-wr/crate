@@ -1,0 +1,7 @@
+$ simple hello world program
+out("Hello world!");
+
+$ add some color
+import crate::iocolor::*;
+
+out(FGREEN + "Hello" + FDEF + " " + BBLUE + "color" + BDEF + "!"));
