@@ -1,0 +1,41 @@
+"""Make a simple calculator"""
+
+class Parsed
+{
+    func __init__(self, src)
+    {
+      $ parse src here
+    }
+}
+
+class Calculator
+{
+    func __init__(self); $ empty initialization
+    
+    func run(self, parsed >> Parsed)
+    {
+      $ run parsed contents here
+    }
+}
+
+prompt: ">>> ";
+request << str;          $ starts off as a blank string
+parsed << Parsed;        $ an empty parsed object
+calc: new Calculator();
+
+func main()
+{
+  while (request != "q")
+  {
+    request: in(prompt);
+  
+    if (request = "q")
+    {
+      out("Thanks for using this calculator!");
+      break;
+    }
+  
+    parsed: parse(request);
+    calc::run(parsed);
+  }
+}
