@@ -1,0 +1,25 @@
+name: Rust build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_rust:
+    name: Build Our Rust Project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project
+        run: cargo build rust/cratelang
+
+      - name: Commit project
+        uses: EndBug/add-and-commit@v9.1.4
+        with:
+          add: .
+          author_name: Silas Wrinker
+          author_email: alcosojr79@gmail.com
+          message: "Built project"
+      
+
+    
+    
