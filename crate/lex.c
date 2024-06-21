@@ -1,13 +1,13 @@
 #include "crate.h"
 
-struct Token lex(char (*src)[])[]
+struct Tokens lex(char src[])
 {
   char c;
-  struct Token tlist[];
+  struct Tokens tlist;
   
-  while ((c = *src++) != EOF)
+  while ((c = src[i++]) != EOF)
   {
-    printf(c);
+    printf("%c", c);
   }
 
   return tlist;
