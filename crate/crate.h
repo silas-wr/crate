@@ -6,13 +6,17 @@ struct Token {
   char value[];
 };
 
+struct Tokens {
+  struct Token[] tokens;
+};
+
 struct Node {
-  struct Token tokens[];
   int ntype;
+  struct Token[] tokens;
 };
 
 struct Program {
-  struct Node nodes[];
+  struct Node[] nodes;
 };
 
 struct Token lex(char (*src)[])[];
