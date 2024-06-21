@@ -7,6 +7,7 @@ struct Token {
 };
 
 struct Tokens {
+  int tnum;
   struct Token tlist[];
 };
 
@@ -16,6 +17,7 @@ struct Node {
 };
 
 struct Program {
+  int nnum;
   struct Node nodes[];
 };
 
