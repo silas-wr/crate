@@ -15,8 +15,8 @@ struct Program {
   struct Node nodes[];
 };
 
-struct Token lex(char name[])[];
-struct Program parse(struct Token tlist[]);
+struct Token lex(char (*src)[])[];
+struct Program parse(struct Token (*tlist)[]);
 int compile(struct Program parsed);
 int run(char file[]);
-int strparse(char s[]);
+int strparse(char (*s)[]);
