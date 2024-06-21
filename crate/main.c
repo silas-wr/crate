@@ -4,6 +4,6 @@ main()
 {
   char sample[] = {'h', 'i', '\0'};
   
-  lex(&sample);
+  lex(sample);
   return 0;
 }
