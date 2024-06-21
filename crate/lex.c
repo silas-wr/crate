@@ -11,13 +11,11 @@ struct Tokens lex(char src[])
   
   while ((c = src[i++]) != EOF)
   {
-    printf("%c", c);
-    
-    newtok = { 0, "Hi" };
-    tlist.tlist[i++] = newtok;
+    printf("%c", c);    
+    t++;
   }
 
-  tlist.exitcode = 0;
+  tlist.tnum = t;
 
   return tlist;
 }
