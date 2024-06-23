@@ -1,8 +1,8 @@
 #include "crate.h"
 
-main()
+int main()
 {
-  string sample = "hi";
+  std::string sample = "hi";
   
   lex(sample);
   return 0;
