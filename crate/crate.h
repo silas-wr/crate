@@ -1,6 +1,14 @@
 #include <iostream>
 #include <string>
 
+enum TokenTypes {
+  ID,
+};
+
+enum NodeTypes {
+  N_ASSIGN
+};
+
 struct Token {
   int ttype;
   string value;
