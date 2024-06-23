@@ -27,7 +27,7 @@ struct Tokens lex(char src[])
         printf("whitespace");
         break;
 
-      case '\0':
+      case EOF:
         printf("EOF");
         break;
 
