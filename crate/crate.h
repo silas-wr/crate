@@ -6,7 +6,7 @@ enum TokenTypes {
 };
 
 enum NodeTypes {
-  N_ASSIGN
+  N_ASSIGN,
 };
 
 struct Token {
@@ -29,7 +29,7 @@ struct Program {
   struct Node nodes[];
 };
 
-struct Tokens lex(std::string src);
+struct Token lex(std::string src)[];
 struct Program parse(struct Tokens tlist);
 int compile(struct Program parsed);
 int run(std::string classfile);
