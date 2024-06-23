@@ -2,7 +2,7 @@
 
 main()
 {
-  char sample[] = {'h', 'i', EOF};
+  string sample = "hi";
   
   lex(sample);
   return 0;
