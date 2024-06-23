@@ -6,8 +6,7 @@ struct Tokens lex(std::string src)
   int  t = 0;
   char c;
 
-  struct Token  newtok;
-  struct Tokens tlist;
+  Tokens tlist;
   
   for (c = src[i]; i < sizeof(src); i++) {
     switch (c)
@@ -38,6 +37,7 @@ struct Tokens lex(std::string src)
   }
 
   tlist.tnum = t;
+  tlist.token = { new Token(), new Token(), new Token() };
 
   return tlist;
 }
