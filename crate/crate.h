@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include <iostream>
 
 struct Token {
   int ttype;
-  char value[];
+  string value;
 };
 
 struct Tokens {
