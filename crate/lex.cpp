@@ -7,6 +7,8 @@ Tokens lex(std::string src)
   char c;
 
   crate::Tokens tlist = crate::Tokens();
+
+  tlist.tokens[] = { new Token(), new Token(), new Token() };
   
   for (c = src[i]; i < sizeof(src); i++) {
     switch (c)
@@ -26,7 +28,7 @@ Tokens lex(std::string src)
         break;
 
       case '\0':
-        std::cout << "end" // end of code
+        std::cout << "end"; // end of code
 
       default:
         std::cout << "unknown";
@@ -35,8 +37,6 @@ Tokens lex(std::string src)
     
     t++;
   }
-
-  tlist.tokens[] = { new Token(), new Token(), new Token() };
 
   return tlist;
 }
