@@ -20,8 +20,8 @@ struct Program {
   struct Node nodes[];
 };
 
-struct Tokens lex(char src[]);
+struct Tokens lex(string src);
 struct Program parse(struct Tokens tlist);
 int compile(struct Program parsed);
-int run(char file[]);
-int strparse(char s[]);
+int run(string classfile);
+int strparse(string s);
