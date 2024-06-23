@@ -9,8 +9,7 @@ struct Tokens lex(char src[])
   struct Token  newtok;
   struct Tokens tlist;
   
-  while ((c = src[i++]) != EOF)
-  {
+  for (c = src[i]; i < sizeof(src); i++) {
     switch (c)
     {
       case 'a': case 'b': case 'c': case 'd' :case 'e': case 'f': case  'g': case 'h': case 'i': case 'j': 
@@ -27,6 +26,9 @@ struct Tokens lex(char src[])
         printf("whitespace");
         break;
 
+      case '\0':
+        printf("EOC"); // end of code
+      
       case EOF:
         printf("EOF");
         break;
