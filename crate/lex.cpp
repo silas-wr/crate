@@ -1,6 +1,6 @@
 #include "crate.h"
 
-struct Tokens lex(char src[])
+struct Tokens lex(string src)
 {
   int  i = 0;
   int  t = 0;
