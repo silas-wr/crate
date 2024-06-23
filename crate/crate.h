@@ -11,7 +11,7 @@ enum NodeTypes {
 
 struct Token {
   int ttype;
-  string value;
+  std::string value;
 };
 
 struct Tokens {
@@ -29,8 +29,8 @@ struct Program {
   struct Node nodes[];
 };
 
-struct Tokens lex(string src);
+struct Tokens lex(std::string src);
 struct Program parse(struct Tokens tlist);
 int compile(struct Program parsed);
-int run(string classfile);
-int strparse(string s);
+int run(std::string classfile);
+int strparse(std::string s);
