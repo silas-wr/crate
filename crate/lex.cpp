@@ -18,23 +18,19 @@ struct Tokens lex(string src)
       case 'E': case 'F': case 'G': case 'H': case 'I': case 'J': case  'K': case 'L': case 'M': case 'N': 
       case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T': case  'U': case 'V': case 'W': case 'X': 
       case 'Y': case 'Z': 
-        printf("alphabetical");
+        std::cout << "alphabetical";
         break;
 
       case '{': case '[': case '(': case ')': case ']': case '}': case ';': 
       case '#': case '\n': case '\t': case '\r': case ' ':
-        printf("whitespace");
+        std::cout << "whitespace";
         break;
 
       case '\0':
-        printf("EOC"); // end of code
-      
-      case EOF:
-        printf("EOF");
-        break;
+        std::cout << "end" // end of code
 
       default:
-        printf("unknown");
+        std::cout << "unknown";
         break;
     }
     
