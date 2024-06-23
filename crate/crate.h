@@ -15,17 +15,15 @@ struct Token {
 };
 
 struct Tokens {
-  int tnum;
   struct Token tlist[];
 };
 
 struct Node {
   int ntype;
-  struct Token tokens[];
+  struct Tokens tokens;
 };
 
 struct Program {
-  int nnum;
   struct Node nodes[];
 };
 
