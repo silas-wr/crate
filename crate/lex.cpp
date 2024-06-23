@@ -5,6 +5,8 @@ Tokens lex(std::string src)
   int  i = 0;
   int  t = 0;
   char c;
+
+  crate::Tokens tlist = crate::Tokens();
   
   for (c = src[i]; i < sizeof(src); i++) {
     switch (c)
@@ -34,7 +36,7 @@ Tokens lex(std::string src)
     t++;
   }
 
-  Token tlist.tokens[] = { new Token(), new Token(), new Token() };
+  tlist.tokens[] = { new Token(), new Token(), new Token() };
 
   return tlist;
 }
