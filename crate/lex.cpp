@@ -1,12 +1,10 @@
 #include "crate.h"
 
-struct Tokens lex(std::string src)
+Tokens lex(std::string src)
 {
   int  i = 0;
   int  t = 0;
   char c;
-
-  Tokens tlist;
   
   for (c = src[i]; i < sizeof(src); i++) {
     switch (c)
@@ -36,8 +34,7 @@ struct Tokens lex(std::string src)
     t++;
   }
 
-  tlist.tnum = t;
-  tlist.token = { new Token(), new Token(), new Token() };
+  Token tlist.tokens[] = { new Token(), new Token(), new Token() };
 
   return tlist;
 }
