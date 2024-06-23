@@ -15,20 +15,20 @@ struct Token {
 };
 
 struct Tokens {
-  struct Token tlist[];
+  Token tlist[];
 };
 
 struct Node {
   int ntype;
-  struct Tokens tokens;
+  Tokens tokens;
 };
 
 struct Program {
-  struct Node nodes[];
+  Node nodes[];
 };
 
-struct Token lex(std::string src)[];
-struct Program parse(struct Tokens tlist);
-int compile(struct Program parsed);
+Token lex(std::string src)[];
+Program parse(Tokens tlist);
+int compile(Program parsed);
 int run(std::string classfile);
 int strparse(std::string s);
