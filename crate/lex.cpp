@@ -1,11 +1,12 @@
 #include "crate.hpp"
 
-Tokens lex(std::string src)
+std::vector<Token> lex(std::string src)
 {
   int  i = 0;
   char c;
 
-  crate::Tokens tlist = crate::Tokens();
+  std::vector<Token> tlist;
+  Token cur;
   
   for (c = src[i]; i < src::size(); i++) {
     switch (c)
