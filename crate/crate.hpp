@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 enum TokenTypes {
   ID,
@@ -14,21 +15,17 @@ struct Token {
   std::string value;
 };
 
-struct Tokens {
-  Token tlist[];
-};
-
 struct Node {
   int ntype;
-  Tokens tokens;
+  std::vector<Token> tokens;
 };
 
 struct Program {
-  Node nodes[];
+  std::vector<Node> nodes;
 };
 
-Token lex(std::string src)[];
-Program parse(Tokens tlist);
+std::vector<Token> lex(std::string src);
+Program parse(std::vector<Token> tlist);
 int compile(Program parsed);
 int run(std::string classfile);
 int strparse(std::string s);
