@@ -1,9 +1,9 @@
-#include "crate.h"
+#include "crate.hpp"
 
 int main()
 {
   std::string sample = "hi";
   
-  lex(sample);
+  crate::Tokens tokens = lex(sample);
   return 0;
 }
