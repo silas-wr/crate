@@ -1,16 +1,13 @@
-#include "crate.h"
+#include "crate.hpp"
 
 Tokens lex(std::string src)
 {
   int  i = 0;
-  int  t = 0;
   char c;
 
   crate::Tokens tlist = crate::Tokens();
-
-  tlist.tokens[] = { new Token(), new Token(), new Token() };
   
-  for (c = src[i]; i < sizeof(src); i++) {
+  for (c = src[i]; i < src::size(); i++) {
     switch (c)
     {
       case 'a': case 'b': case 'c': case 'd' :case 'e': case 'f': case  'g': case 'h': case 'i': case 'j': 
@@ -34,8 +31,6 @@ Tokens lex(std::string src)
         std::cout << "unknown";
         break;
     }
-    
-    t++;
   }
 
   return tlist;
