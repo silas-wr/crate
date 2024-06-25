@@ -4,6 +4,6 @@ int main()
 {
   std::string sample = "hi";
   
-  crate::Tokens tokens = lex(sample);
+  vector<Token> tokens = lex(sample);
   return 0;
 }
