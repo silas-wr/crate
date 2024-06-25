@@ -8,7 +8,7 @@ std::vector<Token> lex(std::string src)
   std::vector<Token> tlist;
   Token cur;
   
-  for (c = src[i]; i < src::size(); i++) {
+  for (c = src[i]; i < src.size(); i++) {
     switch (c)
     {
       case 'a': case 'b': case 'c': case 'd' :case 'e': case 'f': case  'g': case 'h': case 'i': case 'j': 
