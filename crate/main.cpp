@@ -4,6 +4,6 @@ int main()
 {
   std::string sample = "hi";
   
-  vector<Token> tokens = lex(sample);
+  std::vector<Token> tokens = lex(sample);
   return 0;
 }
