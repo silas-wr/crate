@@ -24,14 +24,14 @@ std::vector<Token> lex(std::string src)
       case '#': case '\n': case '\t': case '\r': case ' ':
         std::cout << "whitespace\n"
         break;
-
-      case '\0':
-        std::cout << "end\n"; // end of code
-
+      
       default:
         std::cout << "unknown\n";
         break;
     }
+
+    cur = Token({TokenTypes.EOF, NULL});
+    tlist.push_back(cur);
   }
 
   return tlist;
