@@ -30,7 +30,7 @@ std::vector<Token> lex(std::string src)
         break;
     }
 
-    cur = Token({TokenTypes.EOF, NULL});
+    cur = Token({TokenTypes.EOF, ""});
     tlist.push_back(cur);
   }
 
