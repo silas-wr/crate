@@ -17,19 +17,19 @@ std::vector<Token> lex(std::string src)
       case 'E': case 'F': case 'G': case 'H': case 'I': case 'J': case  'K': case 'L': case 'M': case 'N': 
       case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T': case  'U': case 'V': case 'W': case 'X': 
       case 'Y': case 'Z': 
-        std::cout << "alphabetical";
+        std::cout << "alphabetical\n";
         break;
 
       case '{': case '[': case '(': case ')': case ']': case '}': case ';': 
       case '#': case '\n': case '\t': case '\r': case ' ':
-        std::cout << "whitespace";
+        std::cout << "whitespace\n"
         break;
 
       case '\0':
-        std::cout << "end"; // end of code
+        std::cout << "end\n"; // end of code
 
       default:
-        std::cout << "unknown";
+        std::cout << "unknown\n";
         break;
     }
   }
