@@ -2,9 +2,9 @@
 
 std::vector<Token> lex(std::string src)
 {
-  int  i = 0;
-  char c;
 
+  char c;
+  
   std::vector<Token> tlist;
   Token cur;
 
@@ -13,9 +13,9 @@ std::vector<Token> lex(std::string src)
   std::string operators = "&|^~!=<>:+-*/";
   std::string white = "{[(#?;)]}\r\t\n ";
   
-  for (c = src[i]; i < src.size(); i++) {
+  for (int i = 0; i < src.size(); i++) {
 
-    std::cout << c << ": ";
+    c = src[i];
     
     if (numeric.find(c) != -1) {
       std::cout << "numeric\n";
