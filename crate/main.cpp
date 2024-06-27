@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
   std::vector<Token> tokens = lex(sample);
 
   for(const Token& tk : tokens) 
-    std::cout << "Token = " << tk.ttype << ", " << tk.value;
+    std::cout << "Token = " << tk.ttype << ", " << tk.value << "\n";
   
   return 0;
 }
