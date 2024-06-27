@@ -13,12 +13,12 @@ enum NodeTypes {
 };
 
 struct Token {
-  int ttype;
+  TokenTypes ttype;
   std::string value;
 };
 
 struct Node {
-  int ntype;
+  NodeTypes ntype;
   std::vector<Token> tokens;
 };
 
