@@ -4,11 +4,12 @@
 
 enum TokenTypes {
   ID,
-  EOF,
+  SEMI,
+  EOF
 };
 
 enum NodeTypes {
-  N_ASSIGN,
+  N_ASSIGN
 };
 
 struct Token {
