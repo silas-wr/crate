@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#undef EOF
+
 enum TokenTypes {
   ID,
   SEMI,
