@@ -22,7 +22,7 @@ std::vector<Token> lex(std::string src)
 
       case '{': case '[': case '(': case ')': case ']': case '}': case ';': 
       case '#': case '\n': case '\t': case '\r': case ' ':
-        std::cout << "whitespace\n"
+        std::cout << "whitespace\n";
         break;
       
       default:
@@ -30,7 +30,9 @@ std::vector<Token> lex(std::string src)
         break;
     }
 
-    cur = Token({TokenTypes.EOF, ""});
+    cur.ttype = TokenTypes.EOF;
+    cur.value = "";
+    
     tlist.push_back(cur);
   }
 
