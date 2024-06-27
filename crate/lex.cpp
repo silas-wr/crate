@@ -14,16 +14,16 @@ std::vector<Token> lex(std::string src)
   std::string white = "{[(#?;)]}\r\t\n ";
   
   for (c = src[i]; i < src.size(); i++) {
-    if (alphabet.find(c) != -1) {
-      std::cout << "alphabetical";
-    } else if (numeric.find(c) != -1) {
-      std::cout << "numeric";
+    if (numeric.find(c) != -1) {
+      std::cout << "numeric\n";
     } else if (operators.find(c) != -1) {
-      std::cout << "operational";
+      std::cout << "operational\n";
+    } else if (alphabet.find(c) != -1) {
+      std::cout << "alphabetical\n";
     } else if (white.find(c) != -1) {
-      std::cout << "whitespace";
+      std::cout << "whitespace\n";
     } else {
-      std::cout << "unknown";
+      std::cout << "unknown\n";
     }
   }
 
