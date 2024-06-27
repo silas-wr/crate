@@ -1,6 +1,6 @@
 # The Crate Programming Language
 
-[![CodeQL](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql)
+[![CodeQL](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql) [![C++ Project Build](https://github.com/silas-wr/crate/actions/workflows/cbuild.yml/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/cbuild.yml)
 
 ## Overview
 
