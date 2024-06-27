@@ -4,6 +4,7 @@
 
 enum TokenTypes {
   ID,
+  EOF,
 };
 
 enum NodeTypes {
