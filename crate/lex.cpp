@@ -14,6 +14,9 @@ std::vector<Token> lex(std::string src)
   std::string white = "{[(#?;)]}\r\t\n ";
   
   for (c = src[i]; i < src.size(); i++) {
+
+    std::cout << c << ": ";
+    
     if (numeric.find(c) != -1) {
       std::cout << "numeric\n";
     } else if (operators.find(c) != -1) {
