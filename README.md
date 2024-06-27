@@ -1,5 +1,7 @@
 # The Crate Programming Language
 
+[![CodeQL](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql)
+
 ## Overview
 
 The Crate Programming Language is a language geared towards container programming and data analysis.
