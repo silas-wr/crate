@@ -22,11 +22,11 @@ vector<Token> lex(string src)
 
   map<string, TokenTypes> keys;
 
-  keys["import"] = TokenTypes.IMPORT;
+  keys["import"] = IMPORT;
 
   map<string, TokenTypes> ops;
 
-  ops[":"] = TokenTypes.IS;
+  ops[":"] = IS;
 
   
   for (int i = 0; i < src.size(); i++) {
