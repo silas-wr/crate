@@ -2,6 +2,8 @@
 
 int main(int argc, char* argv[])
 {
+  string fname;
+  
   if (argc != 2) {
     cout << "Usage: crate FILE";
     exit(1);
@@ -26,7 +28,7 @@ int main(int argc, char* argv[])
     exit(1);
   }
   
-  vector<Token> tokens = lex(sample);
+  vector<Token> tokens = lex(content);
 
   for(const Token& tk : tokens) 
     cout << "Token = " << tk.ttype << ", " << tk.value << "\n";
