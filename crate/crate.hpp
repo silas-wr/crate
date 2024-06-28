@@ -10,8 +10,14 @@ using namespace std;
 
 enum TokenTypes {
   ID,
+  IS,
+
+  PERIOD,
   INT,
   FLOAT,
+
+  IMPORT,
+
   SEMI,
   EOL,
   EOF
