@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+
+using namespace std;
 
 #undef EOF
 
@@ -19,20 +22,20 @@ enum NodeTypes {
 
 struct Token {
   TokenTypes ttype;
-  std::string value;
+  string value;
 };
 
 struct Node {
   NodeTypes ntype;
-  std::vector<Token> tokens;
+  vector<Token> tokens;
 };
 
 struct Program {
-  std::vector<Node> nodes;
+  vector<Node> nodes;
 };
 
-std::vector<Token> lex(std::string src);
-Program parse(std::vector<Token> tlist);
+vector<Token> lex(string src);
+Program parse(vector<Token> tlist);
 int compile(Program parsed);
-int run(std::string classfile);
-int strparse(std::string s);
+int run(string classfile);
+int strparse(string s);
