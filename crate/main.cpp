@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
       content += line;
       content += '\n';
     }
-    myfile.close();
+    fi.close();
   } else {
     cout << "[!] Unable to open file.";
     exit(1);
