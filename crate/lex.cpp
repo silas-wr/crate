@@ -1,9 +1,8 @@
 #include "crate.hpp"
 
-std::vector<Token> lex(std::string src)
+vector<Token> lex(string src)
 {
-  
-  std::vector<Token> tlist;  
+  vector<Token> tlist;
   Token cur;
 
   int row = 0;
@@ -13,13 +12,22 @@ std::vector<Token> lex(std::string src)
   
   char c;
   
-  std::string load_var;
-  std::string load_type;
+  string load_var;
+  string load_type;
 
-  std::string alphabet = "abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  std::string numeric = "0123456789";
-  std::string operators = "&|^~!=<>:+-*/";
-  std::string white = "{[(#?;)]}\r\t\n ";
+  string alphabet = "abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  string numeric = "0123456789";
+  string operators = "&|^~!=<>:+-*/";
+  string white = "{[(#?;)]}\r\t\n ";
+
+  map<string, TokenTypes> keys;
+
+  keys["import"] = TokenTypes.IMPORT;
+
+  map<string, TokenTypes> ops;
+
+  ops[":"] = TokenTypes.IS;
+
   
   for (int i = 0; i < src.size(); i++) {
 
@@ -51,7 +59,7 @@ std::vector<Token> lex(std::string src)
         load_type = "alpha";
         load_var += c;
       } else if (load_type == "numeric") {
-        std::cout << "[!] id character on tail of number\n";
+        cout << "[!] id character on tail of number\n";
         ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -60,7 +68,7 @@ std::vector<Token> lex(std::string src)
         load_var = "";
         load_var += c;
       } else {
-        std::cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = 0; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -99,7 +107,7 @@ std::vector<Token> lex(std::string src)
       } else if (load_type == "operational") {
         ;
       } else {
-        std::cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -110,7 +118,7 @@ std::vector<Token> lex(std::string src)
     } 
     // unknown character
     else {      
-      std::cout << "[!] unknown\n";
+      cout << "[!] unknown\n";
       ok = false; // make it uncompilable    
       load_type = "";
       load_var = "";
@@ -128,6 +136,34 @@ std::vector<Token> lex(std::string src)
     }
   }
 
+  if (load_type == "") {
+    ;
+  } else if (load_type == "alpha") {
+    // no keywords yet
+    cur.ttype = ID;
+    cur.value = load_var;
+    tlist.push_back(cur);
+  } else if (load_type == "numeric") {
+    if (load_var.find('.') != -1) {
+      cur.ttype = FLOAT;
+    } else {
+      cur.ttype = INT;
+    }
+    cur.value = load_var;        
+    tlist.push_back(cur);
+  } else if (load_type == "operational") {
+    ;
+  } else {
+    cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+    ok = false; // make it uncompilable    
+    load_type = "";
+    load_var = "";
+  }
+
+  cur.ttype = EOL;
+  cur.value = "";
+
+  tlist.push_back(cur);
   
   cur.ttype = EOF;
   cur.value = "";
@@ -139,6 +175,6 @@ std::vector<Token> lex(std::string src)
     return tlist;
   } else {
     // errors
-    std::exit(1);
+    exit(1);
   }
 }
