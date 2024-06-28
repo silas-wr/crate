@@ -8,8 +8,8 @@ std::vector<Token> lex(std::string src)
 
   int row = 0;
   int col = 0;
-  int eol = 0;
-  int ok = 1;
+  bool eol = false;
+  bool ok = true;
   
   char c;
   
@@ -31,7 +31,7 @@ std::vector<Token> lex(std::string src)
         load_type = ""; // end of comment
       }      
       row = 0;
-      eol = 1;
+      eol = true;
       col += 1;
     } else {
       row += 0;
@@ -52,7 +52,7 @@ std::vector<Token> lex(std::string src)
         load_var += c;
       } else if (load_type == "numeric") {
         std::cout << "[!] id character on tail of number\n";
-        ok = 0; // make it uncompilable    
+        ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
       } else if (load_type == "operational") {
@@ -100,7 +100,7 @@ std::vector<Token> lex(std::string src)
         ;
       } else {
         std::cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
-        ok = 0; // make it uncompilable    
+        ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
       }
@@ -111,7 +111,7 @@ std::vector<Token> lex(std::string src)
     // unknown character
     else {      
       std::cout << "[!] unknown\n";
-      ok = 0; // make it uncompilable    
+      ok = false; // make it uncompilable    
       load_type = "";
       load_var = "";
     }
@@ -124,7 +124,7 @@ std::vector<Token> lex(std::string src)
       tlist.push_back(cur);
 
       // reset
-      eol = 0;
+      eol = false;
     }
   }
 
