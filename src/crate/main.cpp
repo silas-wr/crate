@@ -14,19 +14,14 @@ int main(int argc, char* argv[])
   string content = "";
   string line;
   
-  ifstream fi;
-  fi.open(fname);
+  ifstream fi(fname);
   
-  if (fi.is_open()) {
-    while (getline(fi,line)){
-      content += line;
-      content += '\n';
-    }
-    fi.close();
-  } else {
-    cout << "[!] Unable to open file.";
-    exit(1);
+  while (getline(fi,line)){
+    content += line;
+    content += '\n';
   }
+  
+  fi.close();
   
   vector<Token> tokens = lex(content);
 
