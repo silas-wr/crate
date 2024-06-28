@@ -6,6 +6,8 @@
 
 enum TokenTypes {
   ID,
+  INT,
+  FLOAT,
   SEMI,
   EOL,
   EOF
