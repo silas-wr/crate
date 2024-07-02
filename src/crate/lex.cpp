@@ -27,6 +27,7 @@ vector<Token> lex(string src)
   map<string, TokenTypes> ops;
 
   ops[":"] = IS;
+  ops["::"] = ATTR;
 
   
   for (int i = 0; i < src.size(); i++) {
@@ -58,12 +59,21 @@ vector<Token> lex(string src)
       if (load_type == "" | load_type == "alpha") {
         load_type = "alpha";
         load_var += c;
-      } else if (load_type == "numeric") {
+      } else if (load_type == "int" | load_type == "float") {
         cout << "[!] id character on tail of number\n";
         ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
       } else if (load_type == "operational") {
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops.at(ops.find(load_var));
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cout << "[!] Invalid operator.\n";
+          ok = false;
+        }
+
         load_type = "alpha";
         load_var = "";
         load_var += c;
@@ -76,8 +86,8 @@ vector<Token> lex(string src)
     } 
     // numeric
     else if (numeric.find(c) != -1) {      
-      if (load_type == "" | load_type == "numeric") {
-        load_type = "numeric";
+      if (load_type == "" | load_type == "int" | load_type == "float") {
+        load_type = load_type == "float" ? "float" : "int";
         load_var += c;
       } else if (load_type == "alpha") {
         load_var += c;
@@ -85,27 +95,64 @@ vector<Token> lex(string src)
     }
     // operators
     else if (operators.find(c) != -1) {
-      // load_type = "operational";      
+      if (load_type == "alpha") {
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys.at(keys.find(load_var));
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cur.ttype = ID;
+          cur.value = load_var;
+          tlist.push_back(cur);
+        }
+      }
+
+      if (load_type == "int") {
+        cur.ttype = INT;
+        cur.value = load_var;
+        tlist.push_back(cur);
+      }
+
+      if (load_type == "float") {
+        cur.ttype = FLOAT;
+        cur.value = load_var;
+      }
+     
+      load_type = "operational";  
+      load_var = "";
+      load_var += c;
     }
     // whitespace
     else if (white.find(c) != -1) {  
       if (load_type == "") {
         ;
       } else if (load_type == "alpha") {
-        // no keywords yet
-        cur.ttype = ID;
-        cur.value = load_var;
-        tlist.push_back(cur);
-      } else if (load_type == "numeric") {
-        if (load_var.find('.') != -1) {
-          cur.ttype = FLOAT;
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys.at(keys.find(load_var));
+          cur.value = load_var;
+          tlist.push_back(cur);
         } else {
-          cur.ttype = INT;
+          cur.ttype = ID;
+          cur.value = load_var;
+          tlist.push_back(cur);
         }
+      } else if (load_type == "int") {
+        cur.ttype = INT;        
+        cur.value = load_var;        
+        tlist.push_back(cur);
+      } else if (load_type == "float") {
+        cur.ttype = FLOAT;        
         cur.value = load_var;        
         tlist.push_back(cur);
       } else if (load_type == "operational") {
-        ;
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops.at(ops.find(load_var));
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cout << "[!] Invalid operator.\n";
+          ok = false;
+        }
       } else {
         cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable    
