@@ -1,4 +1,4 @@
-#include <iostream>
+  #include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -9,14 +9,35 @@ using namespace std;
 #undef EOF
 
 enum TokenTypes {
+  // Alphabetical - basic
   ID,
-  IS,
+  CONST,
 
-  PERIOD,
+  // Alphabetical - keywords
+  IMPORT,
+
+  // Numerical - basic
   INT,
   FLOAT,
 
-  IMPORT,
+  // Numerical - keywords
+  ELLIPSIS
+
+  // Operational - assignment
+  IS,
+  ATTR,
+
+  // Operational - other
+  SUM,
+  SUB,
+  MUL,
+  DIV,
+  MOD,
+  EXP,
+  
+
+  // Operational - both
+  
 
   SEMI,
   EOL,
