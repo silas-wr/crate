@@ -21,7 +21,7 @@ enum TokenTypes {
   FLOAT,
 
   // Numerical - keywords
-  ELLIPSIS
+  ELLIPSIS,
 
   // Operational - assignment
   IS,
