@@ -66,7 +66,7 @@ vector<Token> lex(string src)
         load_var = "";
       } else if (load_type == "operational") {
         if (ops.find(load_var) != ops.end()) {
-          cur.ttype = ops.at(ops.find(load_var));
+          cur.ttype = ops[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
@@ -97,7 +97,7 @@ vector<Token> lex(string src)
     else if (operators.find(c) != -1) {
       if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
-          cur.ttype = keys.at(keys.find(load_var));
+          cur.ttype = keys[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
@@ -128,7 +128,7 @@ vector<Token> lex(string src)
         ;
       } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
-          cur.ttype = keys.at(keys.find(load_var));
+          cur.ttype = keys[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
@@ -146,7 +146,7 @@ vector<Token> lex(string src)
         tlist.push_back(cur);
       } else if (load_type == "operational") {
         if (ops.find(load_var) != ops.end()) {
-          cur.ttype = ops.at(ops.find(load_var));
+          cur.ttype = ops[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
@@ -190,7 +190,7 @@ vector<Token> lex(string src)
     cur.ttype = ID;
     cur.value = load_var;
     tlist.push_back(cur);
-  } else if (load_type == "numeric") {
+  } else if (load_type == "int" | load_type == "float") {
     if (load_var.find('.') != -1) {
       cur.ttype = FLOAT;
     } else {
