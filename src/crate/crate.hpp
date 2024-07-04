@@ -14,6 +14,7 @@ enum TokenTypes {
   CONST,
 
   // Alphabetical - keywords
+  TINT,
   IMPORT,
 
   // Numerical - basic
@@ -26,6 +27,8 @@ enum TokenTypes {
   // Operational - assignment
   IS,
   ATTR,
+  TYPE,
+  RTYPE,
 
   // Operational - other
   SUM,
