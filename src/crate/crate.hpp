@@ -37,8 +37,6 @@ enum TokenTypes {
   
 
   // Operational - both
-  
-
   SEMI,
   EOL,
   EOF
