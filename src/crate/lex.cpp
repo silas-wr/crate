@@ -63,7 +63,7 @@ vector<Token> lex(string src)
         load_type = "alpha";
         load_var += c;
       } else if (load_type == "int" | load_type == "float") {
-        cout << "[!] id character on tail of number\n";
+        cout << "[" << row << ", " << col << "] id character on tail of number\n";
         ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -73,7 +73,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[!] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator.\n";
           ok = false;
         }
 
@@ -81,7 +81,7 @@ vector<Token> lex(string src)
         load_var = "";
         load_var += c;
       } else {
-        cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = 0; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -153,11 +153,11 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[!] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator.\n";
           ok = false;
         }
       } else {
-        cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable    
         load_type = "";
         load_var = "";
@@ -168,7 +168,7 @@ vector<Token> lex(string src)
     } 
     // unknown character
     else {      
-      cout << "[!] unknown\n";
+      cout << "[" << row << ", " << col << "] unknown\n";
       ok = false; // make it uncompilable    
       load_type = "";
       load_var = "";
@@ -204,7 +204,7 @@ vector<Token> lex(string src)
   } else if (load_type == "operational") {
     ;
   } else {
-    cout << "[!] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+    cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
     ok = false; // make it uncompilable    
     load_type = "";
     load_var = "";
