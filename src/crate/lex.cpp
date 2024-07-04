@@ -34,6 +34,11 @@ vector<Token> lex(string src)
 
     c = src[i];
 
+    cout << "------------------------------------------------------------------\n";
+    cout << "CHAR: " << c << " LOAD: " << load_var << " TYPE: " << load_type << "\n";
+    cout << "TTYPE: " << cur.ttype << " VALUE: " << cur.value << "\n";
+    cout << "------------------------------------------------------------------\n";
+
     // end of line
     if (c == '\n') {
       if (load_type == "comment") {
