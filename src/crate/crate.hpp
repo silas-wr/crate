@@ -15,6 +15,7 @@ enum TokenTypes {
 
   // Alphabetical - keywords
   TINT,
+  TTYP,
   IMPORT,
 
   // Numerical - basic
