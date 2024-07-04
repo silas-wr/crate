@@ -1,5 +1,1 @@
-$ parsable Crate sample
-
-x : y;
-y << int;
-VAR << type : val; $ comment
+hello
