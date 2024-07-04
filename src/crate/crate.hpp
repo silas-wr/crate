@@ -34,12 +34,30 @@ enum TokenTypes {
   DIV,
   MOD,
   EXP,
+  AND,
+  OR,
+  NOT,
+  NEG,
+  BAND,
+  BOR,
+  XOR,
+  RSFT,
+  LSFT,
   
-
   // Operational - both
+
+  // Whitespace
+  TALL,
+  TERN,
+  OPAR,
+  CPAR,
+  OBRK,
+  CBRK,
+  OBRC,
+  CBRC,
   SEMI,
   EOL,
-  EOF
+  EOF,
 };
 
 enum NodeTypes {
