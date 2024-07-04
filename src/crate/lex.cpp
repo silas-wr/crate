@@ -23,21 +23,19 @@ vector<Token> lex(string src)
   map<string, TokenTypes> keys;
 
   keys["import"] = IMPORT;
+  keys["int"] = TINT;
+  keys["type"] = TTYP;
 
   map<string, TokenTypes> ops;
 
   ops[":"] = IS;
   ops["::"] = ATTR;
+  ops["<<"] = TYPE;
 
   
   for (int i = 0; i < src.size(); i++) {
 
     c = src[i];
-
-    cout << "------------------------------------------------------------------\n";
-    cout << "CHAR: " << c << " LOAD: " << load_var << " TYPE: " << load_type << "\n";
-    cout << "TTYPE: " << cur.ttype << " VALUE: " << cur.value << "\n";
-    cout << "------------------------------------------------------------------\n";
 
     // end of line
     if (c == '\n') {
