@@ -15,6 +15,12 @@ int main(int argc, char* argv[])
   string line;
   
   ifstream fi(fname);
+
+  if (fi.is_open()) {
+    cout << "File '" << fname << "' is now open.";
+  } else {
+    cout << "File '" << fname << "' could not be opened.";
+  }
   
   while (getline(fi,line)){
     content += line;
