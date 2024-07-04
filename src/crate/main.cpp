@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
   ifstream fi(argv[1]);
 
   if (fi.is_open()) {
-    cout << "File '" << argv[1] << "' is now open.";
+    ;
   } else {
     cout << "File '" << argv[1] << "' could not be opened.";
   }
@@ -26,8 +26,10 @@ int main(int argc, char* argv[])
   }
   
   fi.close();
+
+  vector<Token> tokens = lex(content);
   
-  for(const Token& tk : lex(content)) 
+  for(const Token& tk : tokens) 
     cout << "Token = " << tk.ttype << ", " << tk.value << "\n";
   
   return 0;
