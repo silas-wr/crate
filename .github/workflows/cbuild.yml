@@ -23,3 +23,4 @@ jobs:
         author_name: Silas Wrinker
         author_email: alcosojr79@gmail.com
         message: Built project
+        pull: true
