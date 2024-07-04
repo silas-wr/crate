@@ -23,9 +23,7 @@ int main(int argc, char* argv[])
   
   fi.close();
   
-  vector<Token> tokens = lex(content);
-
-  for(const Token& tk : tokens) 
+  for(const Token& tk : lex(content)) 
     cout << "Token = " << tk.ttype << ", " << tk.value << "\n";
   
   return 0;
