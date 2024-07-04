@@ -165,6 +165,56 @@ vector<Token> lex(string src)
       
       load_type = "";
       load_var = "";
+
+      switch (c) {
+        case '{':
+          cur.ttype = OBRC;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case '[':
+          cur.ttype = OBRK;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case '(':
+          cur.ttype = OPAR;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case '#':
+          cur.ttype = TALL;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case '?':
+          cur.ttype = TERN;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case ';':
+          cur.ttype = SEMI;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case ')':
+          cur.ttype = CPAR;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case ']':
+          cur.ttype = CBRK;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        case '}':
+          cur.ttype = CBRC;
+          cur.value = c;
+          tlist.push_back(cur);
+          break;
+        default:
+          break;
+      }
     } 
     // unknown character
     else {      
