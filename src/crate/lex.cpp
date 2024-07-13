@@ -24,6 +24,17 @@ vector<Token> lex(string src)
 
   // keywords
   keys["import"] = IMPORT;
+  keys["package"] = PACK;
+  keys["from"] = FROM;
+  keys["as"] = AS;
+  keys["del"] = DEL;
+  keys["assert"] = ASSERT;
+
+  // data structures
+  keys["func"] = FN;
+  keys["class"] = CLS;
+  keys["crate"] = CRT;
+  keys["struct"] = STC;
 
   // control
   keys["if"] = IF;
@@ -42,6 +53,7 @@ vector<Token> lex(string src)
   keys["const"] = TCNT;
   keys["void"] = TNUL;
   keys["chr"] = TCHR;
+  keys["str"] = TSTR;
   keys["byte"] = TBYT;
   keys["short"] = TSHR;
   keys["int"] = TINT;
@@ -58,6 +70,10 @@ vector<Token> lex(string src)
   ops["<<"] = TYPE;
   ops[">>"] = RTYP;
 
+  // pointer
+  ops["~*"] = PNT;
+  ops["~&"] = REF;
+  
   // math
   ops["+"] = SUM;
   ops["-"] = SUB;
@@ -255,6 +271,41 @@ vector<Token> lex(string src)
       } else if (load_type == "float") {
         cout << "[" << row << ", " << col << "] Invalid operator.\n";
         ok = false;
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "period") {
+        load_type = "splat";
+        load_var += c;
+      } else if (load_type == "splat") {
+        load_var += c;
+        cur.ttype = ELLIPSIS;
+        cur.value = load_var;
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "operational") {
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops[load_var];
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          ok = false;
+          load_type = "";
+          load_var = "";
+        }
+      } else if (load_type == "alpha") {
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys[load_var];
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cur.ttype = ID;
+          cur.value = load_var;
+          tlist.push_back(cur);
+        }
+      } else {
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        ok = false; // make it uncompilable
         load_type = "";
         load_var = "";
       }
