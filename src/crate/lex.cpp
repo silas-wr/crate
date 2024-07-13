@@ -221,7 +221,10 @@ vector<Token> lex(string src)
     }
     // operators
     else if (operators.find(c) != -1) {
-      if (load_type == "alpha") {
+      if (load_type == "" | load_type == "operational") {
+        load_type = "operational";
+        load_var += c; 
+      } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
           cur.value = load_var;
@@ -270,11 +273,6 @@ vector<Token> lex(string src)
         ok = false; // make it uncompilable
         load_type = "";
         load_var = "";
-      }
-      
-      if (load_type == "" | load_type == "operational") {
-        load_type = "operational";
-        load_var += c; 
       }
     }
     // periods
