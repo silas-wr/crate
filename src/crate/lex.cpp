@@ -226,6 +226,10 @@ vector<Token> lex(string src)
           cur.ttype = keys[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
+        } else if (isUpper(load_var)) {
+          cur.ttype = CONST;
+          cur.value = load_var;
+          tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
@@ -298,6 +302,10 @@ vector<Token> lex(string src)
           cur.ttype = keys[load_var];
           cur.value = load_var;
           tlist.push_back(cur);
+        } else if (isUpper(load_var)) {
+          cur.ttype = CONST;
+          cur.value = load_var;
+          tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
@@ -317,6 +325,10 @@ vector<Token> lex(string src)
       } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else if (isUpper(load_var)) {
+          cur.ttype = CONST;
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
@@ -436,28 +448,57 @@ vector<Token> lex(string src)
   }
 
   if (load_type == "") {
-    ;
-  } else if (load_type == "alpha") {
-    // no keywords yet
-    cur.ttype = ID;
-    cur.value = load_var;
-    tlist.push_back(cur);
-  } else if (load_type == "int" | load_type == "float") {
-    if (load_var.find('.') != -1) {
-      cur.ttype = FLOAT;
-    } else {
-      cur.ttype = INT;
-    }
-    cur.value = load_var;        
-    tlist.push_back(cur);
-  } else if (load_type == "operational") {
-    ;
-  } else {
-    cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
-    ok = false; // make it uncompilable    
-    load_type = "";
-    load_var = "";
-  }
+        ;
+      } else if (load_type == "alpha") {
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys[load_var];
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else if (isUpper(load_var)) {
+          cur.ttype = CONST;
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cur.ttype = ID;
+          cur.value = load_var;
+          tlist.push_back(cur);
+        }
+      } else if (load_type == "int") {
+        cur.ttype = INT;        
+        cur.value = load_var;        
+        tlist.push_back(cur);
+      } else if (load_type == "float") {
+        cur.ttype = FLOAT;        
+        cur.value = load_var;        
+        tlist.push_back(cur);
+      } else if (load_type == "operational") {
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops[load_var];
+          cur.value = load_var;
+          tlist.push_back(cur);
+        } else {
+          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          ok = false;
+          load_type = "";
+          load_var = "";
+        }
+      } else if (load_type == "period") {
+        cur.ttype = ARGS;
+        cur.value = load_var;
+        tlist.push_back(cur);
+      } else if (load_type == "splat") {
+        cur.ttype = KWARGS;
+        cur.value = load_var;
+        tlist.push_back(cur);
+      } else {
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        ok = false; // make it uncompilable
+        load_type = "";
+        load_var = "";
+      }
+      
+      load_type = "";
+      load_var = "";
 
   cur.ttype = EOL;
   cur.value = "";
