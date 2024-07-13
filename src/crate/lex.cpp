@@ -15,7 +15,7 @@ vector<Token> lex(string src)
   string load_var;
   string load_type;
 
-  string alphabet = "abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
+  string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   string numeric = "0123456789";
   string operators = "&|^~!=<>:+-*/";
   string white = "{[(#?,;)]}\r\t\n ";
@@ -235,34 +235,47 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         }
-      }
-
-      if (load_type == "int") {
+        
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "int") {
         cur.ttype = INT;
         cur.value = load_var;
         tlist.push_back(cur);
-      }
-
-      if (load_type == "float") {
+        
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "float") {
         cur.ttype = FLOAT;
         cur.value = load_var;
-      }
-
-      if (load_type == "period") {
+        
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
         tlist.push_back(cur);
-      }
-      
-      if (load_type == "splat") {
+        
+        load_type = "";
+        load_var = "";
+      } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
         tlist.push_back(cur);
+        
+        load_type = "";
+        load_var = "";
+      } else {
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        ok = false; // make it uncompilable
+        load_type = "";
+        load_var = "";
       }
-     
-      load_type = "operational";  
-      load_var = "";
-      load_var += c;
+      
+      if (load_type == "" | load_type == "operational") {
+        load_type = "operational";
+        load_var += c; 
+      }
     }
     // periods
     else if (c == '.') {
