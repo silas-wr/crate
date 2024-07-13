@@ -160,7 +160,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
         }
 
@@ -198,7 +198,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
         }
       } else if (load_type == "period") {
@@ -273,7 +273,7 @@ vector<Token> lex(string src)
         load_type = "float";
         load_var += c;
       } else if (load_type == "float") {
-        cout << "[" << row << ", " << col << "] Invalid operator.\n";
+        cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
         ok = false;
         load_type = "";
         load_var = "";
@@ -292,7 +292,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
           load_type = "";
           load_var = "";
@@ -350,7 +350,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
           load_type = "";
           load_var = "";
@@ -477,7 +477,7 @@ vector<Token> lex(string src)
           cur.value = load_var;
           tlist.push_back(cur);
         } else {
-          cout << "[" << row << ", " << col << "] Invalid operator.\n";
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
           load_type = "";
           load_var = "";
