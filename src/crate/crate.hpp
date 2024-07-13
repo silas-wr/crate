@@ -147,3 +147,7 @@ int compile(Program parsed);
 int run(string classfile);
 int strparse(string s);
 int numparse(string s);
+
+bool isUpper(const std::string& s) {
+    return std::all_of(s.begin(), s.end(), [](unsigned char c){ return std::isupper(c); });
+}
