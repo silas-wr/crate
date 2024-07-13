@@ -50,6 +50,10 @@ $ assignment
 <<
 >>
 
+$ pointers
+~*
+~&
+
 $ math
 +
 -
@@ -75,6 +79,10 @@ $ compound assignment
 /:
 %:
 **:
+&:
+|:
+^:
+~:
 
 $ conditional
 &&
