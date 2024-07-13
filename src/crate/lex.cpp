@@ -429,7 +429,7 @@ vector<Token> lex(string src)
     } 
     // unknown character
     else {      
-      cout << "[" << row << ", " << col << "] unknown\n";
+      cout << "[" << row << ", " << col << "] unknown " << c << "\n";
       ok = false; // make it uncompilable    
       load_type = "";
       load_var = "";
