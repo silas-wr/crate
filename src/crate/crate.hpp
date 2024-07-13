@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -40,7 +41,7 @@ enum TokenTypes {
   BREAK,
   CONTINUE,
   
-  // types
+  // type names
   TCNT,
   TNUL,
   TCHR,
@@ -108,6 +109,19 @@ enum TokenTypes {
   // generics
   LAB,
   RAB,
+
+  // params
+  ARGS,
+  KWARGS,
+
+  // objects
+  CHR,
+  STR,
+  BYTE,
+  SHORT,
+  INT,
+  LONG,
+  FLOAT,
   
   // whitespace
   TALL,
@@ -118,6 +132,7 @@ enum TokenTypes {
   CBRK,
   OBRC,
   CBRC,
+  COMM,
   SEMI,
   EOL,
   EOF,
@@ -148,6 +163,6 @@ int run(string classfile);
 int strparse(string s);
 int numparse(string s);
 
-bool isUpper(const std::string& s) {
-    return std::all_of(s.begin(), s.end(), [](unsigned char c){ return std::isupper(c); });
+bool isUpper(const string& s) {
+    return all_of(s.begin(), s.end(), [](unsigned char c){ return isupper(c); });
 }
