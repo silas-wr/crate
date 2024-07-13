@@ -17,7 +17,7 @@ vector<Token> lex(string src)
 
   string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   string numeric = "0123456789";
-  string operators = "&|^~!=<>:+-*/";
+  string operators = "&|^~!=<>:+-*/%";
   string white = "{[(#?,;)]}\r\t\n ";
 
   map<string, TokenTypes> keys;
