@@ -129,11 +129,11 @@ vector<Token> lex(string src)
       if (load_type == "comment") {
         load_type = ""; // end of comment
       }      
-      row = 0;
+      col = 0;
       eol = true;
-      col += 1;
+      row += 1;
     } else {
-      row += 0;
+      col += 1;
     }
 
     // comment
