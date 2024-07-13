@@ -9,48 +9,107 @@ using namespace std;
 #undef EOF
 
 enum TokenTypes {
-  // Alphabetical - basic
+  // ids
   ID,
   CONST,
-
-  // Alphabetical - keywords
-  TINT,
-  TTYP,
+  
+  // keys
   IMPORT,
+  PACK,
+  FROM,
+  AS,
+  DEL,
+  ASSERT,
 
-  // Numerical - basic
-  INT,
-  FLOAT,
+  // data structures
+  FN,
+  CLS,
+  CRT,
+  STC,
 
-  // Numerical - keywords
-  ELLIPSIS,
+  // control
+  IF,
+  ELIF,
+  ELSE,
+  SWITCH,
+  CASE,
+  DEFAULT,
+  TRY,
+  EXCEPT,
+  WHILE,
+  BREAK,
+  CONTINUE,
+  
+  // types
+  TCNT,
+  TNUL,
+  TCHR,
+  TSTR,
+  TBYT,
+  TSHR,
+  TINT,
+  TLNG,
+  TFLT,
+  TTYP,
 
-  // Operational - assignment
+  // assignment
   IS,
   ATTR,
+  ENUM,
   TYPE,
-  RTYPE,
+  RTYP,
 
-  // Operational - other
+  // pointer
+  PNT,
+  REF,
+  
+  // math
   SUM,
   SUB,
   MUL,
   DIV,
   MOD,
   EXP,
+
+  // bin
   AND,
   OR,
-  NOT,
-  NEG,
-  BAND,
-  BOR,
   XOR,
-  RSFT,
-  LSFT,
-  
-  // Operational - both
+  NOT,
+  RSH,
+  LSH,
 
-  // Whitespace
+  // compound assignment
+  INC,
+  DEC,
+  PLEQ,
+  SBEQ,
+  MLEQ,
+  DVEQ,
+  MDEQ,
+  EXEQ,
+  ANEQ,
+  OREQ,
+  XREQ,
+  NTEQ,
+  RSEQ,
+  LSEQ,
+
+  // conditional
+  AAND,
+  OOR,
+  
+  // comparison
+  GE,
+  LE,
+  EQ,
+  NEQ,
+
+  // generics
+  LAB,
+  RAB,
+  
+  // whitespace
   TALL,
   TERN,
   OPAR,
