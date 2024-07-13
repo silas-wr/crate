@@ -113,6 +113,7 @@ enum TokenTypes {
   // params
   ARGS,
   KWARGS,
+  ELLIPSIS,
 
   // objects
   CHR,
