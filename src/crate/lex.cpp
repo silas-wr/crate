@@ -15,7 +15,7 @@ vector<Token> lex(string src)
   string load_var;
   string load_type;
 
-  string alphabet = "abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  string alphabet = "abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   string numeric = "0123456789";
   string operators = "&|^~!=<>:+-*/";
   string white = "{[(#?,;)]}\r\t\n ";
