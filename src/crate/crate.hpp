@@ -146,3 +146,4 @@ Program parse(vector<Token> tlist);
 int compile(Program parsed);
 int run(string classfile);
 int strparse(string s);
+int numparse(string s);
