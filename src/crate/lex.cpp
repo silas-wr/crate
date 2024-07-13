@@ -295,6 +295,7 @@ vector<Token> lex(string src)
         load_var += c;
         cur.ttype = ELLIPSIS;
         cur.value = load_var;
+        tlist.push_back(cur);
         load_type = "";
         load_var = "";
       } else if (load_type == "operational") {
