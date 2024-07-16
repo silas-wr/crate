@@ -103,6 +103,9 @@ $ generics
 <
 >
 
+$ lambda
+->
+
 $ params
 .
 ..
