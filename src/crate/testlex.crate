@@ -11,6 +11,9 @@ from
 as
 del
 assert
+return
+unsigned
+global
 
 $ data stuctures
 func
