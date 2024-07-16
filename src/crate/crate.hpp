@@ -24,6 +24,7 @@ enum TokenTypes {
   RETURN,
   UNSIGN,
   TRANSITIVE,
+  GLOBAL,
 
   // data structures
   FN,
