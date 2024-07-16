@@ -29,6 +29,9 @@ vector<Token> lex(string src)
   keys["as"] = AS;
   keys["del"] = DEL;
   keys["assert"] = ASSERT;
+  keys["return"] = RETURN;
+  keys["unsigned"] = UNSIGN;
+  keys["transitive"] = TRANSITIVE;
 
   // data structures
   keys["func"] = FN;
@@ -119,6 +122,9 @@ vector<Token> lex(string src)
   // generics
   ops["<"] = LAB;
   ops[">"] = RAB;
+
+  // lambda
+  ops["->"] = LAM;
   
   for (int i = 0; i < src.size(); i++) {
 
