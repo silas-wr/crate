@@ -37,7 +37,7 @@ wrapper auth(thing) {
         self::hsh : hash( thing::user::req("PASSWORD") );
 
         $ Authenticate
-        if (self::hsh = thing::user::hash) {
+        if (self::hsh == thing::user::hash) {
             ; 
         } else {
             raise Exception("Authentication faliure");
