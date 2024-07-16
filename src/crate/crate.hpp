@@ -115,7 +115,7 @@ enum TokenTypes {
   RAB,
 
   // lambda
-  LAM
+  LAM,
 
   // params
   ARGS,
