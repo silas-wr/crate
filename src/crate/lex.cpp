@@ -32,6 +32,7 @@ vector<Token> lex(string src)
   keys["return"] = RETURN;
   keys["unsigned"] = UNSIGN;
   keys["transitive"] = TRANSITIVE;
+  keys["global"] = GLOBAL;
 
   // data structures
   keys["func"] = FN;
