@@ -1,0 +1,133 @@
+$ comment
+
+$ ids
+current
+AUTHOR
+
+$ keys
+import
+package
+from
+as
+del
+assert
+return
+unsigned
+global
+
+$ data stuctures
+func
+class
+crate
+struct
+
+$ control
+if
+elif
+else
+switch
+case
+default
+try
+except
+while
+break
+continue
+
+$ type names
+const
+void
+chr
+str
+byte
+short
+int
+long
+double
+type
+
+$ assignment
+:
+::
+:=
+<<
+>>
+
+$ pointers
+~*
+~&
+
+$ math
++
+-
+*
+/
+%
+**
+
+$ bin
+&
+|
+^
+~
+~>
+<~
+
+$ compound assignment
+++
+--
++:
+-:
+*:
+/:
+%:
+**:
+&:
+|:
+^:
+~:
+>:
+<:
+
+$ conditional
+&&
+||
+
+$ comparison
+>=
+=<
+==
+!=
+
+$ generics
+<
+>
+
+$ lambda
+->
+
+$ params
+.
+..
+...
+
+$ objects
+$ 'a'
+$ "hello"
+$ 1
+$ 12
+11245
+$ 10455123123
+1.23
+
+$ whitespace
+#
+?
+(
+)
+[
+]
+{
+}
+,
+;
