@@ -21,6 +21,9 @@ enum TokenTypes {
   AS,
   DEL,
   ASSERT,
+  RETURN,
+  UNSIGN,
+  TRANSITIVE,
 
   // data structures
   FN,
@@ -109,6 +112,9 @@ enum TokenTypes {
   // generics
   LAB,
   RAB,
+
+  // lambda
+  LAM
 
   // params
   ARGS,
