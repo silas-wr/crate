@@ -163,6 +163,7 @@ struct Token {
 
 struct Node {
   NodeTypes ntype;
+  vector<Node> nodes;
   vector<Token> tokens;
 };
 
