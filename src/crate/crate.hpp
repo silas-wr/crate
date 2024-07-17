@@ -26,6 +26,12 @@ enum TokenTypes {
   TRANSITIVE,
   GLOBAL,
 
+  // privacy
+  PUBLIC,
+  PROTECT,
+  PRIVATE,
+  HIDDEN,
+
   // data structures
   FN,
   CLS,
