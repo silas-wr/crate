@@ -33,6 +33,12 @@ vector<Token> lex(string src)
   keys["unsigned"] = UNSIGN;
   keys["transitive"] = TRANSITIVE;
   keys["global"] = GLOBAL;
+  
+  // privacy
+  keys["public"] = PUBLIC;
+  keys["protected"] = PROTECT;
+  keys["private"] = PRIVATE;
+  keys["hidden"] = HIDDEN;
 
   // data structures
   keys["func"] = FN;
