@@ -15,6 +15,12 @@ return
 unsigned
 global
 
+$ privacy
+public
+protected
+private
+hidden
+
 $ data stuctures
 func
 class
