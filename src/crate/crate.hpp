@@ -159,6 +159,8 @@ enum NodeTypes {
 struct Token {
   TokenTypes ttype;
   string value;
+  int row;
+  int col;
 };
 
 struct Node {
