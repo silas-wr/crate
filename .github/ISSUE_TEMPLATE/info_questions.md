@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-# Ask your questions
-
 **What do you want to know?**
 A clear and concise description of what the problem is. Ex. How are you going to  [...]?
 
