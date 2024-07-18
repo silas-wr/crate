@@ -171,6 +171,8 @@ vector<Token> lex(string src)
         if (ops.find(load_var) != ops.end()) {
           cur.ttype = ops[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
@@ -183,10 +185,14 @@ vector<Token> lex(string src)
       } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
 
         load_type = "";
@@ -209,6 +215,8 @@ vector<Token> lex(string src)
         if (ops.find(load_var) != ops.end()) {
           cur.ttype = ops[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
@@ -220,6 +228,8 @@ vector<Token> lex(string src)
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
 
         load_type = "int";
@@ -241,14 +251,20 @@ vector<Token> lex(string src)
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else if (isUpper(load_var)) {
           cur.ttype = CONST;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         }
         
@@ -257,28 +273,33 @@ vector<Token> lex(string src)
       } else if (load_type == "int") {
         cur.ttype = INT;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
-        
         load_type = "";
         load_var = "";
       } else if (load_type == "float") {
         cur.ttype = FLOAT;
         cur.value = load_var;
-        
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
         load_type = "";
         load_var = "";
       } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
-        
         load_type = "";
         load_var = "";
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
-        
         load_type = "";
         load_var = "";
       } else {
@@ -308,6 +329,8 @@ vector<Token> lex(string src)
         load_var += c;
         cur.ttype = ELLIPSIS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
         load_type = "";
         load_var = "";
@@ -315,6 +338,8 @@ vector<Token> lex(string src)
         if (ops.find(load_var) != ops.end()) {
           cur.ttype = ops[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
@@ -326,14 +351,20 @@ vector<Token> lex(string src)
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else if (isUpper(load_var)) {
           cur.ttype = CONST;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         }
       } else {
@@ -351,28 +382,40 @@ vector<Token> lex(string src)
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else if (isUpper(load_var)) {
           cur.ttype = CONST;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         }
       } else if (load_type == "int") {
         cur.ttype = INT;        
-        cur.value = load_var;        
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "float") {
         cur.ttype = FLOAT;        
-        cur.value = load_var;        
+        cur.value = load_var;  
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "operational") {
         if (ops.find(load_var) != ops.end()) {
           cur.ttype = ops[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
@@ -383,10 +426,14 @@ vector<Token> lex(string src)
       } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else {
         cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
@@ -402,51 +449,71 @@ vector<Token> lex(string src)
         case '{':
           cur.ttype = OBRC;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case '[':
           cur.ttype = OBRK;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case '(':
           cur.ttype = OPAR;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case '#':
           cur.ttype = TALL;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case '?':
           cur.ttype = TERN;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case ';':
           cur.ttype = SEMI;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case ')':
           cur.ttype = CPAR;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case ']':
           cur.ttype = CBRK;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case '}':
           cur.ttype = CBRC;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
           break;
         case ',':
           cur.ttype = COMM;
           cur.value = c;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         default:
           break;
@@ -464,6 +531,8 @@ vector<Token> lex(string src)
     if (eol) {
       cur.ttype = EOL;
       cur.value = "";
+      cur.row = row;
+      cur.col = col;
 
       tlist.push_back(cur);
 
@@ -478,19 +547,27 @@ vector<Token> lex(string src)
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else if (isUpper(load_var)) {
           cur.ttype = CONST;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         }
       } else if (load_type == "int") {
         cur.ttype = INT;        
-        cur.value = load_var;        
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "float") {
         cur.ttype = FLOAT;        
@@ -500,6 +577,8 @@ vector<Token> lex(string src)
         if (ops.find(load_var) != ops.end()) {
           cur.ttype = ops[load_var];
           cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
           tlist.push_back(cur);
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
@@ -510,10 +589,14 @@ vector<Token> lex(string src)
       } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
         tlist.push_back(cur);
       } else {
         cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
@@ -527,12 +610,14 @@ vector<Token> lex(string src)
 
   cur.ttype = EOL;
   cur.value = "";
-
+  cur.row = row;
+  cur.col = col;
   tlist.push_back(cur);
   
   cur.ttype = EOF;
   cur.value = "";
-    
+  cur.row = row;
+  cur.col = col;    
   tlist.push_back(cur);
 
   if (ok) {
