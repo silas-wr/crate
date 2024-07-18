@@ -1,6 +1,6 @@
 ---
 name: Ask for info
-about: Ask a question about Crate and it's progress
+about: Ask a question about Crate and its progress
 title: Question about Crate
 labels: crate
 assignees: ''
