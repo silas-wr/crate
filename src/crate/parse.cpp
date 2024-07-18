@@ -21,14 +21,14 @@ Program parse(vector<Token> tlist) {
       if (eol) {
         ;
       } else {
-        cout << "[] " << "Unexpected EOL";
+        cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOL";
         ok = false;
       }
     } else if (tok.ttype == EOF) {
       if (eof) {
         ;
       } else {
-        cout << "[] " << "Unexpected EOF";
+        cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF";
         ok = false;
       }
     }
