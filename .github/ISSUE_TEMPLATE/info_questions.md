@@ -1,11 +1,13 @@
 ---
 name: Ask for info
-about: Suggest an idea for this project
+about: Ask a question about Crate and it's progress
 title: Question about Crate
 labels: crate
 assignees: ''
 
 ---
+
+# Ask your questions
 
 **What do you want to know?**
 A clear and concise description of what the problem is. Ex. How are you going to  [...]?
