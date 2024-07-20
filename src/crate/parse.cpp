@@ -12,7 +12,9 @@ Program parse(vector<Token> tlist) {
 
   string load_type;
   vector<Token> load_var;
-  vector<Node> nodes;
+  vector<Node> load_nodes;
+
+  vector<Node> ultimate;
 
   for (int i = 0; i < size(tlist); i++) {
     tok = tlist.at(i);
@@ -33,8 +35,56 @@ Program parse(vector<Token> tlist) {
           ok = false;
         }
       case ID:                                                                     // what to do with identifiers
+        eol = eof = false;
+        if (load_type == "") {
+          load_var.push_back(tok);
+          load_type = "id";
+        } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
+          load_var.clear();
+          load_type = "";
+
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected id";
+          ok = false;
+        } else if (load_type == "import") {
+          load_var.push_back(tok);
+          load_type = "importid";
+        } else {
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          ok = false;
+        }
       case CONST:                                                                  // what to do with constants
+        eol = eof = false;
+        if (load_type == "") {
+          load_var.push_back(tok);
+          load_type = "const";
+        } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
+          load_var.clear();
+          load_type = "";
+
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected const";
+          ok = false;
+        } else if (load_type == "import") {
+          load_var.push_back(tok);
+          load_type = "importct";
+        } else {
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          ok = false;
+        }
       case IMPORT:                                                                 // what to do with `import`
+        eol = eof = false;
+        if (load_type == "") {
+          load_var.push_back(tok);
+          load_type = "import";
+        } else if (load_type == "id" | load_type == "const" | load_type == "import" | load_type == "importid" | load_type == "importct") {
+          load_var.clear();
+          load_type = "";
+
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected import";
+          ok = false;
+        } else {
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          ok = false;
+        }
       case PACK:                                                                   // what to do with `pack`
       case FROM:                                                                   // what to do with `from`
       case AS:                                                                     // what to do with `as`
@@ -135,6 +185,62 @@ Program parse(vector<Token> tlist) {
       case CBRC:                                                                   // what to do with closed braces
       case COMM:                                                                   // what to do with commas
       case SEMI:                                                                   // what to do with semicolons
+        if (load_type = "") {
+          load_var.push_back(tok);
+          cur.tokens = load_var;
+          cur.nodes = load_nodes;
+          cur.ntype = NUL;
+          nlist.nodes = load_var;
+          load_var.clear();
+        } else if (load_type = "import") {
+          load_var.clear();
+          load_type = "";
+
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          ok = false;
+        } else if (load_type = "id") {
+          load_var.push_back(tok);
+          cur.tokens = load_var;
+          cur.nodes = load_nodes;
+          cur.ntype = BLANDID;
+          nlist.nodes = load_var;
+          load_var.clear();
+          
+          eol = eof = true;
+          load_type = "";
+        } else if (load_type = "const") {
+          load_var.push_back(tok);
+          cur.tokens = load_var;
+          cur.nodes = load_nodes;
+          cur.ntype = BLANDCT;
+          nlist.nodes = load_var;
+          load_var.clear();
+          
+          eol = eof = true;
+          load_type = "";
+        } else if (load_type = "importid") {
+          load_var.push_back(tok);
+          cur.tokens = load_var;
+          cur.nodes = load_nodes;
+          cur.ntype = IMPOID;
+          nlist.nodes = load_var;
+          load_var.clear();
+          
+          eol = eof = true;
+          load_type = "";
+        } else if (load_type = "importct") {
+          load_var.push_back(tok);
+          cur.tokens = load_var;
+          cur.nodes = load_nodes;
+          cur.ntype = IMPOCT;
+          nlist.nodes = load_var;
+          load_var.clear();
+
+          eol = eof = true;
+          load_type = "";
+        } else {
+          
+        }
       default:                                                                     // what to do with everything else
         cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
         ok = false;
