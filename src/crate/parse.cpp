@@ -10,7 +10,7 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
-  string load_type;
+  string load_type = "";
   vector<Token> load_var;
 
   vector<Node> ultimate;
@@ -42,13 +42,13 @@ Program parse(vector<Token> tlist) {
           load_var.clear();
           load_type = "";
 
-          cout << "[" << tok.row << ", " << tok.col << "] unexpected id";
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected id \n";
           ok = false;
         } else if (load_type == "import") {
           load_var.push_back(tok);
           load_type = "importid";
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         }
       case CONST:                                                                  // what to do with constants
@@ -60,13 +60,13 @@ Program parse(vector<Token> tlist) {
           load_var.clear();
           load_type = "";
 
-          cout << "[" << tok.row << ", " << tok.col << "] unexpected const";
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected const \n";
           ok = false;
         } else if (load_type == "import") {
           load_var.push_back(tok);
           load_type = "importct";
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         }
       case IMPORT:                                                                 // what to do with `import`
@@ -78,10 +78,10 @@ Program parse(vector<Token> tlist) {
           load_var.clear();
           load_type = "";
 
-          cout << "[" << tok.row << ", " << tok.col << "] unexpected import";
+          cout << "[" << tok.row << ", " << tok.col << "] unexpected import \n";
           ok = false;
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         }
       case PACK:                                                                   // what to do with `pack`
@@ -195,7 +195,7 @@ Program parse(vector<Token> tlist) {
           load_var.clear();
           load_type = "";
 
-          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         } else if (load_type == "id") {
           load_var.push_back(tok);
@@ -238,11 +238,11 @@ Program parse(vector<Token> tlist) {
           eol = eof = true;
           load_type = "";
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         }
       default:                                                                     // what to do with everything else
-        cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+        cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
         ok = false;
     }
   }
