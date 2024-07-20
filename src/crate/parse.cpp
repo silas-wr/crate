@@ -192,13 +192,13 @@ Program parse(vector<Token> tlist) {
           cur.ntype = NUL;
           ultimate.push_back(cur);
           load_var.clear();
-        } else if (load_type = "import") {
+        } else if (load_type == "import") {
           load_var.clear();
           load_type = "";
 
           cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
           ok = false;
-        } else if (load_type = "id") {
+        } else if (load_type == "id") {
           load_var.push_back(tok);
           cur.tokens = load_var;
           cur.nodes = load_nodes;
@@ -208,7 +208,7 @@ Program parse(vector<Token> tlist) {
           
           eol = eof = true;
           load_type = "";
-        } else if (load_type = "const") {
+        } else if (load_type == "const") {
           load_var.push_back(tok);
           cur.tokens = load_var;
           cur.nodes = load_nodes;
@@ -218,7 +218,7 @@ Program parse(vector<Token> tlist) {
           
           eol = eof = true;
           load_type = "";
-        } else if (load_type = "importid") {
+        } else if (load_type == "importid") {
           load_var.push_back(tok);
           cur.tokens = load_var;
           cur.nodes = load_nodes;
@@ -228,7 +228,7 @@ Program parse(vector<Token> tlist) {
           
           eol = eof = true;
           load_type = "";
-        } else if (load_type = "importct") {
+        } else if (load_type == "importct") {
           load_var.push_back(tok);
           cur.tokens = load_var;
           cur.nodes = load_nodes;
@@ -247,7 +247,7 @@ Program parse(vector<Token> tlist) {
   }
 
   if (ok) {
-    nlist.nodes = nodes;
+    nlist.nodes = ultimate;
     return nlist; 
   } else {
     exit(1);
