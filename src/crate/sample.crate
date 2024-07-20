@@ -1,13 +1,5 @@
-$ This isn't ready for too much parsing yet. I'm not changing it until the lexer's done and/or the parser is picking up steam.
-$ This will be a very big program.
-
-$ null statement
 ;
-
-$ id and const
 var;
 VAR;
-
-$ imports
 import var;
 import VAR;
