@@ -12,7 +12,6 @@ Program parse(vector<Token> tlist) {
 
   string load_type;
   vector<Token> load_var;
-  vector<Node> load_nodes;
 
   vector<Node> ultimate;
 
@@ -185,10 +184,10 @@ Program parse(vector<Token> tlist) {
       case CBRC:                                                                   // what to do with closed braces
       case COMM:                                                                   // what to do with commas
       case SEMI:                                                                   // what to do with semicolons
-        if (load_type = "") {
+        if (load_type == "") {
           load_var.push_back(tok);
           cur.tokens = load_var;
-          cur.nodes = load_nodes;
+          ;
           cur.ntype = NUL;
           ultimate.push_back(cur);
           load_var.clear();
@@ -201,7 +200,7 @@ Program parse(vector<Token> tlist) {
         } else if (load_type == "id") {
           load_var.push_back(tok);
           cur.tokens = load_var;
-          cur.nodes = load_nodes;
+          ;
           cur.ntype = BLANDID;
           ultimate.push_back(cur);
           load_var.clear();
@@ -211,7 +210,7 @@ Program parse(vector<Token> tlist) {
         } else if (load_type == "const") {
           load_var.push_back(tok);
           cur.tokens = load_var;
-          cur.nodes = load_nodes;
+          ;
           cur.ntype = BLANDCT;
           ultimate.push_back(cur);
           load_var.clear();
@@ -221,7 +220,7 @@ Program parse(vector<Token> tlist) {
         } else if (load_type == "importid") {
           load_var.push_back(tok);
           cur.tokens = load_var;
-          cur.nodes = load_nodes;
+          ;
           cur.ntype = IMPOID;
           ultimate.push_back(cur);
           load_var.clear();
@@ -231,7 +230,7 @@ Program parse(vector<Token> tlist) {
         } else if (load_type == "importct") {
           load_var.push_back(tok);
           cur.tokens = load_var;
-          cur.nodes = load_nodes;
+          ;
           cur.ntype = IMPOCT;
           ultimate.push_back(cur);
           load_var.clear();
@@ -239,11 +238,13 @@ Program parse(vector<Token> tlist) {
           eol = eof = true;
           load_type = "";
         } else {
-          
+          cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
+          ok = false;
         }
       default:                                                                     // what to do with everything else
         cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github.";
         ok = false;
+    }
   }
 
   if (ok) {
