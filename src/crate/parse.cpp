@@ -190,7 +190,7 @@ Program parse(vector<Token> tlist) {
           cur.tokens = load_var;
           cur.nodes = load_nodes;
           cur.ntype = NUL;
-          nlist.nodes = load_var;
+          ultimate.push_back(cur);
           load_var.clear();
         } else if (load_type = "import") {
           load_var.clear();
@@ -203,7 +203,7 @@ Program parse(vector<Token> tlist) {
           cur.tokens = load_var;
           cur.nodes = load_nodes;
           cur.ntype = BLANDID;
-          nlist.nodes = load_var;
+          ultimate.push_back(cur);
           load_var.clear();
           
           eol = eof = true;
@@ -213,7 +213,7 @@ Program parse(vector<Token> tlist) {
           cur.tokens = load_var;
           cur.nodes = load_nodes;
           cur.ntype = BLANDCT;
-          nlist.nodes = load_var;
+          ultimate.push_back(cur);
           load_var.clear();
           
           eol = eof = true;
@@ -223,7 +223,7 @@ Program parse(vector<Token> tlist) {
           cur.tokens = load_var;
           cur.nodes = load_nodes;
           cur.ntype = IMPOID;
-          nlist.nodes = load_var;
+          ultimate.push_back(cur);
           load_var.clear();
           
           eol = eof = true;
@@ -233,7 +233,7 @@ Program parse(vector<Token> tlist) {
           cur.tokens = load_var;
           cur.nodes = load_nodes;
           cur.ntype = IMPOCT;
-          nlist.nodes = load_var;
+          ultimate.push_back(cur);
           load_var.clear();
 
           eol = eof = true;
