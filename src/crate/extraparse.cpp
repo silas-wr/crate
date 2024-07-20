@@ -1,11 +1,11 @@
 #include "crate.hpp"
 
 void nodes(Node n, int tab) {
-  cout << "Node " << node.ntype << ": \n";
+  cout << string(tab, "\t") << "Node " << node.ntype << ": \n";
   tab++;
   for (int i = 0; i < n.nodes.size(); i++) {
     for (int j = 0; j < n.tokens.size(); i++) {
-      cout << " Token " << n.tokens.at(j).ttype << ": " << n.tokens.at(j).value << "\n";
+      cout << string(tab, "\t") << " Token " << n.tokens.at(j).ttype << ": " << n.tokens.at(j).value << "\n";
     }
     nodes(n.nodes.at(i));
   }
