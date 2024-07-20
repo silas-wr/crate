@@ -184,3 +184,5 @@ int run(string classfile);
 int strparse(string s);
 int numparse(string s);
 bool isUpper(const string& s);
+void nodes(Node, int);
+void prog(Program);
