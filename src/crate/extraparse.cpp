@@ -1,7 +1,7 @@
 #include "crate.hpp"
 
 void nodes(Node n, int tab) {
-  cout << string(tab, "\t") << "Node " << node.ntype << ": \n";
+  cout << string(tab, '\t') << "Node " << node.ntype << ": \n";
   tab++;
   for (int i = 0; i < n.nodes.size(); i++) {
     for (int j = 0; j < n.tokens.size(); i++) {
