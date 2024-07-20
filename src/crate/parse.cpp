@@ -23,14 +23,14 @@ Program parse(vector<Token> tlist) {
         if (eol) {
           ;
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOL";
+          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOL \n";
           ok = false;
         }
       case EOF:                                                                    // what to do with end-of-files
         if (eof) {
           ;
         } else {
-          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF";
+          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF \n";
           ok = false;
         }
       case ID:                                                                     // what to do with identifiers
