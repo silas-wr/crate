@@ -153,7 +153,11 @@ enum TokenTypes {
 };
 
 enum NodeTypes {
-  
+  NUL,
+  BLANDID,
+  BLANDCT,
+  IMPOID,
+  IMPOCT,
 };
 
 struct Token {
