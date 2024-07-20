@@ -13,7 +13,7 @@ void nodes(Node n, int tb) {
 }
 
 void prog(Program p) {
-  tab = 0;
+  int tab = 0;
   for (int i = 0; i < p.nodes.size(); i++) {
     nodes(p.nodes.at(i), tab);
   }
