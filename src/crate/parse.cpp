@@ -84,7 +84,7 @@ Program parse(vector<Token> tlist) {
           cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
           ok = false;
         }
-      case PACK:                                                                   // what to do with `pack`
+      /* case PACK:                                                                   // what to do with `pack`
       case FROM:                                                                   // what to do with `from`
       case AS:                                                                     // what to do with `as`
       case DEL:                                                                    // what to do with `delete`
@@ -182,7 +182,7 @@ Program parse(vector<Token> tlist) {
       case CBRK:                                                                   // what to do with closed brackets
       case OBRC:                                                                   // what to do with opened braces
       case CBRC:                                                                   // what to do with closed braces
-      case COMM:                                                                   // what to do with commas
+      case COMM:                                                                   // what to do with commas */
       case SEMI:                                                                   // what to do with semicolons
         if (load_type == "") {
           load_var.push_back(tok);
