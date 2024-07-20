@@ -28,9 +28,7 @@ int main(int argc, char* argv[])
   fi.close();
 
   vector<Token> tokens = lex(content);
-  
-  for(const Token& tk : tokens) 
-    cout << "Token = " << tk.ttype << ", " << tk.value << "\n";
+  Program parsed = parse(tokens);
   
   return 0;
 }
