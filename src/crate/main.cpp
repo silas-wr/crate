@@ -29,6 +29,10 @@ int main(int argc, char* argv[])
 
   vector<Token> tokens = lex(content);
   Program parsed = parse(tokens);
+
+  for (int tok = 0; tok < tokens.size(); tok++) {
+    cout << "Token " << tokens.at(tok).ttype << ": " << tokens.at(tok).value << "\n";
+  }
   
   return 0;
 }
