@@ -4,7 +4,7 @@
 #include <map>
 #include <fstream>
 #include <algorithm>
-#include <ctype>
+#include <cctype>
 
 using namespace std;
 
