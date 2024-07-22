@@ -18,6 +18,8 @@ Program parse(vector<Token> tlist) {
   for (int i = 0; i < size(tlist); i++) {
     tok = tlist.at(i);
 
+    cout << "\nToken " << i << " of type " << tok.ttype << ": " << tok.value << " with load_type " << load_type << "\n";
+
     switch (tok.ttype) {
       case 103:                                                                    // what to do with end-of-lines
         if (eol) {
