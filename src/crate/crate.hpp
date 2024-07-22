@@ -12,145 +12,145 @@ using namespace std;
 
 enum TokenTypes {
   // ids
-  ID,
-  CONST,
+  ID,                    //0
+  CONST,                 //1
   
   // keys
-  IMPORT,
-  PACK,
-  FROM,
-  AS,
-  DEL,
-  ASSERT,
-  RETURN,
-  UNSIGN,
-  TRANSITIVE,
-  GLOBAL,
+  IMPORT,                //2
+  PACK,                  //3
+  FROM,                  //4
+  AS,                    //5
+  DEL,                   //6
+  ASSERT,                //7
+  RETURN,                //8
+  UNSIGN,                //9
+  TRANSITIVE,            //10
+  GLOBAL,                //11
 
   // privacy
-  PUBLIC,
-  PROTECT,
-  PRIVATE,
-  HIDDEN,
+  PUBLIC,                //12
+  PROTECT,               //13
+  PRIVATE,               //14
+  HIDDEN,                //15
 
   // data structures
-  FN,
-  CLS,
-  CRT,
-  STC,
+  FN,                    //16
+  CLS,                   //17
+  CRT,                   //18
+  STC,                   //19
 
   // control
-  IF,
-  ELIF,
-  ELSE,
-  SWITCH,
-  CASE,
-  DEFAULT,
-  TRY,
-  EXCEPT,
-  WHILE,
-  BREAK,
-  CONTINUE,
+  IF,                    //20
+  ELIF,                  //21
+  ELSE,                  //22
+  SWITCH,                //23
+  CASE,                  //24
+  DEFAULT,               //25
+  TRY,                   //26
+  EXCEPT,                //27
+  WHILE,                 //28
+  BREAK,                 //29
+  CONTINUE,              //30
   
   // type names
-  TCNT,
-  TNUL,
-  TCHR,
-  TSTR,
-  TBYT,
-  TSHR,
-  TINT,
-  TLNG,
-  TFLT,
-  TTYP,
+  TCNT,                  //31
+  TNUL,                  //32
+  TCHR,                  //33
+  TSTR,                  //34
+  TBYT,                  //35
+  TSHR,                  //36
+  TINT,                  //37
+  TLNG,                  //38
+  TFLT,                  //39
+  TTYP,                  //40
 
   // assignment
-  IS,
-  ATTR,
-  ENUM,
-  TYPE,
-  RTYP,
+  IS,                    //41
+  ATTR,                  //42
+  ENUM,                  //43
+  TYPE,                  //44
+  RTYP,                  //45
 
   // pointer
-  PNT,
-  REF,
+  PNT,                   //46
+  REF,                   //47
   
   // math
-  SUM,
-  SUB,
-  MUL,
-  DIV,
-  MOD,
-  EXP,
+  SUM,                   //48
+  SUB,                   //49
+  MUL,                   //50
+  DIV,                   //51
+  MOD,                   //52 
+  EXP,                   //53
 
   // bin
-  AND,
-  OR,
-  XOR,
-  NOT,
-  RSH,
-  LSH,
+  AND,                   //54
+  OR,                    //55
+  XOR,                   //56
+  NOT,                   //57
+  RSH,                   //58
+  LSH,                   //59
 
   // compound assignment
-  INC,
-  DEC,
-  PLEQ,
-  SBEQ,
-  MLEQ,
-  DVEQ,
-  MDEQ,
-  EXEQ,
-  ANEQ,
-  OREQ,
-  XREQ,
-  NTEQ,
-  RSEQ,
-  LSEQ,
+  INC,                   //60
+  DEC,                   //61
+  PLEQ,                  //62
+  SBEQ,                  //63
+  MLEQ,                  //64
+  DVEQ,                  //65
+  MDEQ,                  //66
+  EXEQ,                  //67
+  ANEQ,                  //68
+  OREQ,                  //69
+  XREQ,                  //70
+  NTEQ,                  //71
+  RSEQ,                  //72
+  LSEQ,                  //73
 
   // conditional
-  AAND,
-  OOR,
-  
+  AAND,                  //74
+  OOR,                   //75
+
   // comparison
-  GE,
-  LE,
-  EQ,
-  NEQ,
+  GE,                    //76
+  LE,                    //77
+  EQ,                    //78
+  NEQ,                   //79
 
   // generics
-  LAB,
-  RAB,
+  LAB,                   //80
+  RAB,                   //81
 
   // lambda
-  LAM,
+  LAM,                   //82
 
   // params
-  ARGS,
-  KWARGS,
-  ELLIPSIS,
+  ARGS,                  //83
+  KWARGS,                //84
+  ELLIPSIS,              //85
 
   // objects
-  CHR,
-  STR,
-  BYTE,
-  SHORT,
-  INT,
-  LONG,
-  FLOAT,
+  CHR,                   //86
+  STR,                   //87
+  BYTE,                  //88
+  SHORT,                 //89
+  INT,                   //90
+  LONG,                  //91
+  FLOAT,                 //92
   
   // whitespace
-  TALL,
-  TERN,
-  OPAR,
-  CPAR,
-  OBRK,
-  CBRK,
-  OBRC,
-  CBRC,
-  COMM,
-  SEMI,
-  EOL,
-  EOF,
+  TALL,                  //93
+  TERN,                  //94
+  OPAR,                  //95
+  CPAR,                  //96
+  OBRK,                  //97
+  CBRK,                  //98
+  OBRC,                  //99
+  CBRC,                  //100
+  COMM,                  //101
+  SEMI,                  //102
+  EOL,                   //103
+  EOF,                   //104
 };
 
 enum NodeTypes {
