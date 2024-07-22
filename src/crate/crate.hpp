@@ -178,12 +178,12 @@ struct Program {
   vector<Node> nodes;
 };
 
-vector<Token> lex(string src);
-Program parse(vector<Token> tlist);
-int compile(Program parsed);
-int run(string classfile);
-int strparse(string s);
-int numparse(string s);
-bool isUpper(string s);
+vector<Token> lex(string);
+Program parse(vector<Token>);
+int compile(Program);
+int run(string);
+int strparse(string);
+int numparse(string);
+bool isUpper(const string&);
 void nodes(Node, int);
 void prog(Program);
