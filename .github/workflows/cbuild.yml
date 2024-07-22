@@ -24,8 +24,8 @@ jobs:
     - name: Commit Project
       uses: EndBug/add-and-commit@v9.1.4
       with:
-        permissions: read
         author_name: Silas Wrinker
         author_email: alcosojr79@gmail.com
         message: Built project
         pull: true
+        push: true
