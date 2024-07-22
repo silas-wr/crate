@@ -4,6 +4,7 @@
 #include <map>
 #include <fstream>
 #include <algorithm>
+#include <ctype>
 
 using namespace std;
 
@@ -183,6 +184,6 @@ int compile(Program parsed);
 int run(string classfile);
 int strparse(string s);
 int numparse(string s);
-bool isUpper(const string& s);
+bool isUpper(string s);
 void nodes(Node, int);
 void prog(Program);
