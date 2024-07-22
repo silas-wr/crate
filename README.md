@@ -18,7 +18,7 @@ Although my project still has a `com/crate/*.java` structure, I will eventually 
 
 ## Example in crate
 
-The example below is held as `samples/com/myproject/authentication.crate` to demonstrate a package in crate.
+The example below can be found at `samples/com/myproject/authentication.crate` to demonstrate a package in crate.
 
 ```
 $ Sample program in crate
