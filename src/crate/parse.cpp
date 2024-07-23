@@ -24,77 +24,35 @@ Program parse(vector<Token> tlist) {
       if (eol) {
           ;
       } else {
-          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOL " << load_type << "\n";
+          cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOL\n";
           ok = false;
       }
     } else if (tok.ttype == 104) {
       if (eof) {
         ;
       } else {
-        cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF " << load_type << "\n";
+        cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF\n";
         ok = false;
       }
     } else if (tok.ttype == 0) {
-      // Code for case 0
+      ;
     } else if (tok.ttype == 1) {
-      // Code for case 1
+      ;
     } else if (tok.ttype == 2) {
-      // Code for case 2
+      ;
     } else if (tok.ttype == 102) {
       if (load_type == "") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        ;
         cur.ntype = NUL;
         ultimate.push_back(cur);
         load_var.clear();
-      } else if (load_type == "import") {
-        load_var.clear();
-        load_type = "";
-        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
-        ok = false;
-      } else if (load_type == "id") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        ;
-        cur.ntype = BLANDID;
-        ultimate.push_back(cur);
-        load_var.clear();
-        eol = eof = true;
-        load_type = "";
-      } else if (load_type == "const") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        ;
-        cur.ntype = BLANDCT;
-        ultimate.push_back(cur);
-        load_var.clear();
-        eol = eof = true;
-        load_type = "";
-      } else if (load_type == "importid") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        ;
-        cur.ntype = IMPOID;
-        ultimate.push_back(cur);
-        load_var.clear();
-        eol = eof = true;
-        load_type = "";
-      } else if (load_type == "importct") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        ;
-        cur.ntype = IMPOCT;
-        ultimate.push_back(cur);
-        load_var.clear();
-        eol = eof = true;
-        load_type = "";
       } else {
-        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type)\n";
         ok = false;
       }
     } else {
-      cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. \n";
+      cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-token)\n";
       ok = false;
     }
   }
