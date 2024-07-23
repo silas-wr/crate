@@ -34,6 +34,8 @@ int main(int argc, char* argv[])
   }
   
   Program parsed = parse(tokens);
+
+  prog(parsed);
   
   return 0;
 }
