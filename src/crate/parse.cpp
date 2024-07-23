@@ -10,8 +10,9 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
-  list<string> id {"id", "const", "importid", "importct", "packid", "packct"};
-  list<string> sky {"id", "const", "import", "importid", "importct", "packid", "packct"};
+  vector<string> id {"id", "const", "importid", "importct", "packid", "packct"};
+  vector<string> sky {"id", "const", "import", "importid", "importct", "pack", "packid", "packct"};
+  vector<string> semi {"import", "pack"};
 
   string load_type = "";
   vector<Token> load_var;
@@ -49,7 +50,7 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packid";
-      } else if (find(id.begin(), id.end(), load_type)) {
+      } else if (find(id.begin(), id.end(), load_type) != -1) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
@@ -70,7 +71,7 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packct";
-      } else if (find(id.begin(), id.end(), load_type)) {
+      } else if (find(id.begin(), id.end(), load_type) != -1) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
@@ -85,7 +86,7 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
-      } else if (find(sky.begin(), sky.end(), load_type)) {
+      } else if (find(sky.begin(), sky.end(), load_type) != -1) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected import. (unexpected-import-with-" << load_type << ")\n";
@@ -100,7 +101,7 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "pack";
-      } else if (find(sky.begin(), sky.end(), load_type)) {
+      } else if (find(sky.begin(), sky.end(), load_type) != -1) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected package. (unexpected-pack-with-" << load_type << ")\n";
@@ -160,7 +161,7 @@ Program parse(vector<Token> tlist) {
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "import" | load_type == "pack") {
+      } else if (find(semi.begin(), semi.end(), load_type) != -1) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected semi. (unexpected-semi-with-" << load_type << ")\n";
