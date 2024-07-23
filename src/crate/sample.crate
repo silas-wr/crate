@@ -1,6 +1,18 @@
 $ Let's hope it works!
+
+$ null statement
 ;
+
+$ identifier
 random_id;
+
+$ constant
 RANDOM_CT;
+
+$ imports
 import module;
 import MODULE;
+
+$ packages
+package mypack;
+package MYPACK;
