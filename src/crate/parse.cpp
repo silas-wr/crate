@@ -85,6 +85,8 @@ Program parse(vector<Token> tlist) {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
       }
+    } else if (tok.ttype == 3) {
+      // Let's see...
     } else if (tok.ttype == 102) {
       eol = true;
       eof = true;
