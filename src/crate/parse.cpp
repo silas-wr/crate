@@ -10,7 +10,7 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
-  list<string> id {}
+  list<string> id {};
 
   string load_type = "";
   vector<Token> load_var;
