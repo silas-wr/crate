@@ -1,4 +1,5 @@
 $ Let's hope it works!
+$ By the way, some of the keywords (like assert) will come later, due to more complex parsing functions involved
 
 $ null statement
 ;
