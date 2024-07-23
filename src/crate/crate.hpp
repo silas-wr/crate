@@ -160,6 +160,8 @@ enum NodeTypes {
   BLANDCT,
   IMPOID,
   IMPOCT,
+  PACKID,
+  PACKCT,
 };
 
 struct Token {
