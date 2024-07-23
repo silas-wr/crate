@@ -50,7 +50,7 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packid";
-      } else if (find(id.begin(), id.end(), load_type) != -1) {
+      } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
@@ -71,7 +71,7 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packct";
-      } else if (find(id.begin(), id.end(), load_type) != -1) {
+      } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
@@ -86,7 +86,7 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
-      } else if (find(sky.begin(), sky.end(), load_type) != -1) {
+      } else if (find(sky.begin(), sky.end(), load_type) != sky.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected import. (unexpected-import-with-" << load_type << ")\n";
@@ -101,7 +101,7 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "pack";
-      } else if (find(sky.begin(), sky.end(), load_type) != -1) {
+      } else if (find(sky.begin(), sky.end(), load_type) != sky.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected package. (unexpected-pack-with-" << load_type << ")\n";
@@ -161,7 +161,7 @@ Program parse(vector<Token> tlist) {
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (find(semi.begin(), semi.end(), load_type) != -1) {
+      } else if (find(semi.begin(), semi.end(), load_type) != semi.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected semi. (unexpected-semi-with-" << load_type << ")\n";
