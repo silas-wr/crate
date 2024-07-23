@@ -10,7 +10,7 @@ My goal with **crate** is to reach both low and high levels in programming.
 
 ## History
 
-The Crate Programming Language originated (in my mind) when I decided I wanted to be able to run a container _within_ my code. Moreover, I wanted to be able to control the _permissions_ of the container, as well as letting the container manage its variables. In short, I wanted what I've termed a _self-contained environment_. So that's why I decided to make Crate. I didn't know where to start so naturally I started with the language I'm most familiar with: Python. Afterwards, I decided to move closer to C/C++. Since I didn't know either, I started with Java. Now, I've begun to learn C and C++ with books and the Internet.
+The Crate Programming Language originated (in my mind) when I decided I wanted to be able to run a container _within_ my code. Moreover, I wanted to be able to control the _permissions_ of the container, as well as letting the container manage its variables. In short, I wanted what I've termed a _self-contained environment_. So that's why I decided to make Crate. I didn't know where to start, so naturally I chose the language I'm most familiar with: Python. Afterwards, I decided to move closer to C/C++. Since I didn't know either, I started with Java. Now, I've begun to learn C and C++ with books and the Internet.
 
 ## Moving from Java to C/C++
 
