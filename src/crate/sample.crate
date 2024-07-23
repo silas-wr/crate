@@ -2,3 +2,5 @@ $ Let's hope it works!
 ;
 random_id;
 RANDOM_CT;
+import module;
+import MODULE;
