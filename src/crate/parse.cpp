@@ -99,6 +99,8 @@ Program parse(vector<Token> tlist) {
     }
   }
 
+  cout << "\n";
+
   if (ok) {
     nlist.nodes = ultimate;
     return nlist; 
