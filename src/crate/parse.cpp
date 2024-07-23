@@ -10,6 +10,8 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
+  list<string> id {}
+
   string load_type = "";
   vector<Token> load_var;
 
@@ -43,7 +45,10 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "import") {
         load_var.push_back(tok);
         load_type = "importid";
-      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
+      } else if (load_type == "pack") {
+        load_var.push_back(tok);
+        load_type = "packid";
+      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct" | load_type == "packid" | load_type == "packct") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
@@ -61,7 +66,10 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "import") {
         load_var.push_back(tok);
         load_type = "importct";
-      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
+      } else if (load_type == "pack") {
+        load_var.push_back(tok);
+        load_type = "packct";
+      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct" | load_type == "packid" | load_type == "packct") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
@@ -76,7 +84,7 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
-      } else if (load_type == "id" | load_type == "const" | load_type == "import" | load_type == "importid" | load_type == "importct") {
+      } else if (load_type == "id" | load_type == "const" | load_type == "import" | load_type == "importid" | load_type == "importct" | load_type == "packid" | load_type == "packct") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected import. (unexpected-import-with-" << load_type << ")\n";
@@ -86,7 +94,20 @@ Program parse(vector<Token> tlist) {
         ok = false;
       }
     } else if (tok.ttype == 3) {
-      // Let's see...
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        load_var.push_back(tok);
+        load_type = "pack";
+      } else if (load_type == "id" | load_type == "const" | load_type == "import" | load_type == "importid" | load_type == "importct" | load_type == "pack" | load_type == "packid" | load_type == "packct") {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected package. (unexpected-pack-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
     } else if (tok.ttype == 102) {
       eol = true;
       eof = true;
@@ -123,7 +144,19 @@ Program parse(vector<Token> tlist) {
         cur.ntype = IMPOCT;
         ultimate.push_back(cur);
         load_type = "";
-      } else if (load_type == "import") {
+      } else if (load_type == "packid") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = PACKID;
+        ultimate.push_back(cur);
+        load_type = "";
+      } else if (load_type == "packct") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = PACKCT;
+        ultimate.push_back(cur);
+        load_type = "";
+      } else if (load_type == "import" | load_type == "pack") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected semi. (unexpected-semi-with-" << load_type << ")\n";
