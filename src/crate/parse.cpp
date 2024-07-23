@@ -40,17 +40,30 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "id";
-      } else if (load_type == "id") {
+      } else if (load_type == "id" | load_type == "const") {
         load_var.clear();
-        load_type = "id";
+        load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
         ok = false;
       } else {
-        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type)\n";
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
       }
     } else if (tok.ttype == 1) {
-      ;
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        load_var.push_back(tok);
+        load_type = "const";
+      } else if (load_type == "id" | load_type == "const") {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
     } else if (tok.ttype == 2) {
       ;
     } else if (tok.ttype == 102) {
@@ -69,12 +82,19 @@ Program parse(vector<Token> tlist) {
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
+      } else if (load_type == "const") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = BLANDCT;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
       } else {
-        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type)\n";
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
       }
     } else {
-      cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-token)\n";
+      cout << "[" << tok.row << ", " << tok.col << "] " << "we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-token-" << tok.ttype << ")\n";
       ok = false;
     }
   }
