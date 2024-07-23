@@ -54,6 +54,8 @@ Program parse(vector<Token> tlist) {
     } else if (tok.ttype == 2) {
       ;
     } else if (tok.ttype == 102) {
+      eol = true;
+      eof = true;
       if (load_type == "") {
         load_var.push_back(tok);
         cur.tokens = load_var;
