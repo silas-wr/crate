@@ -144,18 +144,21 @@ Program parse(vector<Token> tlist) {
         cur.tokens = load_var;
         cur.ntype = IMPOCT;
         ultimate.push_back(cur);
+        load_var.clear();
         load_type = "";
       } else if (load_type == "packid") {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = PACKID;
         ultimate.push_back(cur);
+        load_var.clear();
         load_type = "";
       } else if (load_type == "packct") {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = PACKCT;
         ultimate.push_back(cur);
+        load_var.clear();
         load_type = "";
       } else if (load_type == "import" | load_type == "pack") {
         load_var.clear();
