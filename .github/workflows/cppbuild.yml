@@ -22,10 +22,6 @@ jobs:
         bash compile.sh
 
     - name: Commit Project
-      uses: EndBug/add-and-commit@v9.1.4
+      uses: stefanzweifel/c@v4
       with:
-        author_name: Silas Wrinker
-        author_email: alcosojr79@gmail.com
-        message: Built project
-        pull: false
-        push: false
+        commit_message: "Built project"
