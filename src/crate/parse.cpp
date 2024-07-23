@@ -40,7 +40,10 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "id";
-      } else if (load_type == "id" | load_type == "const") {
+      } else if (load_type == "import") {
+        load_var.push_back(tok);
+        load_type = "importid";
+      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
@@ -55,7 +58,10 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "const";
-      } else if (load_type == "id" | load_type == "const") {
+      } else if (load_type == "import") {
+        load_var.push_back(tok);
+        load_type = "importct";
+      } else if (load_type == "id" | load_type == "const" | load_type == "importid" | load_type == "importct") {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
@@ -65,7 +71,20 @@ Program parse(vector<Token> tlist) {
         ok = false;
       }
     } else if (tok.ttype == 2) {
-      ;
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        load_var.push_back(tok);
+        load_type = "import";
+      } else if (load_type == "id" | load_type == "const" | load_type == "import" | load_type == "importid" | load_type == "importct") {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected import. (unexpected-import-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
     } else if (tok.ttype == 102) {
       eol = true;
       eof = true;
@@ -89,6 +108,24 @@ Program parse(vector<Token> tlist) {
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
+      } else if (load_type == "importid") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = IMPOID;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "importct") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = IMPOCT;
+        ultimate.push_back(cur);
+        load_type = "";
+      } else if (load_type == "import") {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected semi. (unexpected-semi-with-" << load_type << ")\n";
+        ok = false;
       } else {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
