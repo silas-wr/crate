@@ -5,6 +5,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cctype>
+#include <list>
 
 using namespace std;
 
