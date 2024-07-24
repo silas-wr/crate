@@ -77,12 +77,9 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
-      } else if (load_type == "fromid") {
+      } else if (load_type == "fromg") {
         load_var.push_back(tok);
-        load_type = "imfrid";
-      } else if (load_type == "fromct") {
-        load_var.push_back(tok);
-        load_type = "imfrct";
+        load_type = "imfr";
       } else if (find(imp.begin(), imp.end(), load_type) != imp.end()) {
         load_var.clear();
         load_type = "";
