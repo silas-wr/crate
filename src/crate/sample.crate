@@ -2,7 +2,7 @@ $ Let's hope it works!
 $ By the way, some of the keywords (like assert) will come later, due to more complex parsing functions involved
 
 $ This version (noconst) should treat IDs (type 0) the same as CONSTs (type 1). The keyword ('const') should do the work of solidifying (?) the variable.
-$ If I decide that this works better, I'll get rid of type 1 identifiers.
+$ But it will work... I got rid of CONSTs in the lexer, but just for the noconst branch.
 
 $ null statement
 ;
