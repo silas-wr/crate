@@ -10,23 +10,15 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
-  vector<string> id {"id", "const", "importid", "importct", "packid", "packct",\
-    "fromid", "fromct", "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  vector<string> id {"id", "importr", "packr", "fromg", "fromr"};
   
-  vector<string> imp {"id", "const", "import", "importid", "importct", "pack",\
-    "packid", "packct", "from", "imfrid", "imfrct", "imfridid", "imfrctid",\
-    "imfridct", "imfrctct"};
+  vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr"};
   
-  vector<string> pck {"id", "const", "import", "importid", "importct", "pack",\
-    "packid", "packct", "from", "fromid", "fromct", "imfrid", "imfrct",\
-    "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr"};
   
-  vector<string> fro {"id", "const", "import", "importid", "importct", "pack",\
-    "packid", "packct", "from", "fromid", "fromct", "imfrid", "imfrct",\
-    "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr"};
   
-  vector<string> semi {"import", "pack", "from", "fromid", "fromct", "imfrid",\
-    "imfrct"};
+  vector<string> semi {"import", "pack", "from", "fromg", "imfr"};
 
   string load_type = "";
   vector<Token> load_var;
@@ -52,7 +44,7 @@ Program parse(vector<Token> tlist) {
         cout << "[" << tok.row << ", " << tok.col << "] " << "Unexpected EOF\n";
         ok = false;
       }
-    } else if (tok.ttype == 0) {
+    } else if (tok.ttype == 0 | tok.ttype == 1) {
       eol = false;
       eof = false;
       if (load_type == "") {
@@ -60,53 +52,20 @@ Program parse(vector<Token> tlist) {
         load_type = "id";
       } else if (load_type == "from") {
         load_var.push_back(tok);
-        load_type = "fromid";
+        load_type = "fromg";
       } else if (load_type == "import") {
         load_var.push_back(tok);
-        load_type = "importid";
+        load_type = "importr";
       } else if (load_type == "pack") {
         load_var.push_back(tok);
-        load_type = "packid";
-      } else if (load_type == "imfrid") {
+        load_type = "packr";
+      } else if (load_type == "imfr") {
         load_var.push_back(tok);
-        load_type = "imfridid";
-      } else if (load_type == "imfrct") {
-        load_var.push_back(tok);
-        load_type = "imfrctid";
+        load_type = "fromr";
       } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected id. (unexpected-id-with-" << load_type << ")\n";
-        ok = false;
-      } else {
-        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
-        ok = false;
-      }
-    } else if (tok.ttype == 1) {
-      eol = false;
-      eof = false;
-      if (load_type == "") {
-        load_var.push_back(tok);
-        load_type = "const";
-      } else if (load_type == "import") {
-        load_var.push_back(tok);
-        load_type = "importct";
-      } else if (load_type == "pack") {
-        load_var.push_back(tok);
-        load_type = "packct";
-      } else if (load_type == "from") {
-        load_var.push_back(tok);
-        load_type = "fromct";
-      } else if (load_type == "imfrid") {
-        load_var.push_back(tok);
-        load_type = "imfridct";
-      } else if (load_type == "imfrct") {
-        load_var.push_back(tok);
-        load_type = "imfrctct";
-      } else if (find(id.begin(), id.end(), load_type) != id.end()) {
-        load_var.clear();
-        load_type = "";
-        cout << "[" << tok.row << ", " << tok.col << "] unexpected const. (unexpected-const-with-" << load_type << ")\n";
         ok = false;
       } else {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
@@ -175,70 +134,28 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "id") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = BLANDID;
+        cur.ntype = NBLAND;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "const") {
+      } else if (load_type == "importr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = BLANDCT;
+        cur.ntype = NIMP;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "importid") {
+      } else if (load_type == "packr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = IMPOID;
+        cur.ntype = NPACK;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "importct") {
+      } else if (load_type == "fromr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = IMPOCT;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "packid") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = PACKID;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "packct") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = PACKCT;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "imfridid") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = FROMII;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "imfrctid") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = FROMCI;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "imfridct") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = FROMIC;
-        ultimate.push_back(cur);
-        load_var.clear();
-        load_type = "";
-      } else if (load_type == "imfrctct") {
-        load_var.push_back(tok);
-        cur.tokens = load_var;
-        cur.ntype = FROMCC;
+        cur.ntype = NFROM;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
