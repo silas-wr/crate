@@ -7,7 +7,7 @@ Program parse(vector<Token> tlist) {
   
   bool eol = true;
   bool eof = true;
-  bool complex = false;
+  // bool complex = false; // For functions, crates, and such things
   bool ok = true;
 
   vector<string> id {"id", "importr", "packr", "fromg", "fromr"};
