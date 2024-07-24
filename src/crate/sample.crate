@@ -1,8 +1,6 @@
 $ Let's hope it works!
 $ By the way, some of the keywords (like assert) will come later, due to more complex parsing functions involved
-
-$ This version (noconst) should treat IDs (type 0) the same as CONSTs (type 1). The keyword ('const') should do the work of solidifying (?) the variable.
-$ But it will work... I got rid of CONSTs in the lexer, but just for the noconst branch.
+$ Also, there are no more constant identifiers. I got rid of them from the lexer.
 
 $ null statement
 ;
@@ -10,19 +8,11 @@ $ null statement
 $ identifier
 random_id;
 
-$ ALSO identifier
-RANDOM_CT;
-
-$ imports
+$ import
 import module;
-import MODULE;
 
-$ packages
+$ package
 package mypack;
-package MYPACK;
 
-$ from imports
+$ from import
 from module import thing;
-from MODULE import thing;
-from module import THING;
-from MODULE import THING;
