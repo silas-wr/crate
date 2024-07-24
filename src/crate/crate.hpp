@@ -156,16 +156,10 @@ enum TokenTypes {
 
 enum NodeTypes {
   NUL,
-  BLANDID,
-  BLANDCT,
-  IMPOID,
-  IMPOCT,
-  PACKID,
-  PACKCT,
-  FROMII,
-  FROMCI,
-  FROMIC,
-  FROMCC,
+  NBLAND,
+  NIMPORT,
+  NPACK,
+  NFROM,
 };
 
 struct Token {
