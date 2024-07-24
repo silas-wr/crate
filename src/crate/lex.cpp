@@ -254,12 +254,6 @@ vector<Token> lex(string src)
           cur.row = row;
           cur.col = col;
           tlist.push_back(cur);
-        } else if (isUpper(load_var)) {
-          cur.ttype = CONST;
-          cur.value = load_var;
-          cur.row = row;
-          cur.col = col;
-          tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
@@ -354,12 +348,6 @@ vector<Token> lex(string src)
           cur.row = row;
           cur.col = col;
           tlist.push_back(cur);
-        } else if (isUpper(load_var)) {
-          cur.ttype = CONST;
-          cur.value = load_var;
-          cur.row = row;
-          cur.col = col;
-          tlist.push_back(cur);
         } else {
           cur.ttype = ID;
           cur.value = load_var;
@@ -381,12 +369,6 @@ vector<Token> lex(string src)
       } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
-          cur.value = load_var;
-          cur.row = row;
-          cur.col = col;
-          tlist.push_back(cur);
-        } else if (isUpper(load_var)) {
-          cur.ttype = CONST;
           cur.value = load_var;
           cur.row = row;
           cur.col = col;
@@ -546,12 +528,6 @@ vector<Token> lex(string src)
       } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
-          cur.value = load_var;
-          cur.row = row;
-          cur.col = col;
-          tlist.push_back(cur);
-        } else if (isUpper(load_var)) {
-          cur.ttype = CONST;
           cur.value = load_var;
           cur.row = row;
           cur.col = col;
