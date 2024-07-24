@@ -1,6 +1,6 @@
 # The Crate Programming Language
 
-[![Codacy](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/github-code-scanning/codacy.yml) [![C++ Project Build](https://github.com/silas-wr/crate/actions/workflows/cppbuild.yml/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/cbuild.yml)
+[![Codacy](https://github.com/silas-wr/crate/actions/workflows/codacy.yml/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/codacy.yml) [![C++ Project Build](https://github.com/silas-wr/crate/actions/workflows/cppbuild.yml/badge.svg)](https://github.com/silas-wr/crate/actions/workflows/cbuild.yml)
 
 ## Overview
 
