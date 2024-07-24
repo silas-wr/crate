@@ -162,6 +162,10 @@ enum NodeTypes {
   IMPOCT,
   PACKID,
   PACKCT,
+  FROMII,
+  FROMCI,
+  FROMIC,
+  FROMCC,
 };
 
 struct Token {
