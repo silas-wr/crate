@@ -1,9 +1,6 @@
 $ Let's hope it works!
 $ By the way, some of the keywords (like assert) will come later, due to more complex parsing functions involved
 
-$ noeol statements
-import mod1; import mod2; package name;
-
 $ null statement
 ;
 
@@ -20,3 +17,9 @@ import MODULE;
 $ packages
 package mypack;
 package MYPACK;
+
+$ from imports
+from module import thing;
+from MODULE import thing;
+from module import THING;
+from MODULE import THING;
