@@ -184,6 +184,5 @@ int compile(Program);
 int run(string);
 int strparse(string);
 int numparse(string);
-bool isUpper(const string&);
 void nodes(Node, int);
 void prog(Program);
