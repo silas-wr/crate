@@ -157,7 +157,7 @@ enum TokenTypes {
 enum NodeTypes {
   NUL,
   NBLAND,
-  NIMPORT,
+  NIMP,
   NPACK,
   NFROM,
 };
