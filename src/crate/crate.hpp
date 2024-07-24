@@ -178,8 +178,8 @@ struct Program {
   vector<Node> nodes;
 };
 
-vector<Token> lex(string);
-Program parse(vector<Token>);
+vector<Token> lex(const string);
+Program parse(const vector<Token>);
 int compile(Program);
 int run(string);
 int strparse(string);
