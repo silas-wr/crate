@@ -1,6 +1,6 @@
 #include "crate.hpp"
 
-Program parse(vector<Token> tlist) {
+Program parse(const vector<Token> tlist) {
   Program nlist;
   Node cur;
   Token tok;
