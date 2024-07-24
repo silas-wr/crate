@@ -1,6 +1,6 @@
 #include "crate.hpp"
 
-vector<Token> lex(string src)
+vector<Token> lex(const string src)
 {
   vector<Token> tlist;
   Token cur;
