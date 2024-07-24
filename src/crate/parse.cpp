@@ -10,9 +10,23 @@ Program parse(vector<Token> tlist) {
   bool complex = false;
   bool ok = true;
 
-  vector<string> id {"id", "const", "importid", "importct", "packid", "packct"};
-  vector<string> sky {"id", "const", "import", "importid", "importct", "pack", "packid", "packct"};
-  vector<string> semi {"import", "pack"};
+  vector<string> id {"id", "const", "importid", "importct", "packid", "packct",\
+    "fromid", "fromct", "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  
+  vector<string> imp {"id", "const", "import", "importid", "importct", "pack",\
+    "packid", "packct", "from", "imfrid", "imfrct", "imfridid", "imfrctid",\
+    "imfridct", "imfrctct"};
+  
+  vector<string> pck {"id", "const", "import", "importid", "importct", "pack",\
+    "packid", "packct", "from", "fromid", "fromct", "imfrid", "imfrct",\
+    "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  
+  vector<string> fro {"id", "const", "import", "importid", "importct", "pack",\
+    "packid", "packct", "from", "fromid", "fromct", "imfrid", "imfrct",\
+    "imfridid", "imfrctid", "imfridct", "imfrctct"};
+  
+  vector<string> semi {"import", "pack", "from", "fromid", "fromct", "imfrid",\
+    "imfrct"};
 
   string load_type = "";
   vector<Token> load_var;
@@ -44,12 +58,21 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "id";
+      } else if (load_type == "from") {
+        load_var.push_back(tok);
+        load_type = "fromid";
       } else if (load_type == "import") {
         load_var.push_back(tok);
         load_type = "importid";
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packid";
+      } else if (load_type == "imfrid") {
+        load_var.push_back(tok);
+        load_type = "imfridid";
+      } else if (load_type == "imfrct") {
+        load_var.push_back(tok);
+        load_type = "imfrctid";
       } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
@@ -71,6 +94,15 @@ Program parse(vector<Token> tlist) {
       } else if (load_type == "pack") {
         load_var.push_back(tok);
         load_type = "packct";
+      } else if (load_type == "from") {
+        load_var.push_back(tok);
+        load_type = "fromct";
+      } else if (load_type == "imfrid") {
+        load_var.push_back(tok);
+        load_type = "imfridct";
+      } else if (load_type == "imfrct") {
+        load_var.push_back(tok);
+        load_type = "imfrctct";
       } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
@@ -86,7 +118,13 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
-      } else if (find(sky.begin(), sky.end(), load_type) != sky.end()) {
+      } else if (load_type == "fromid") {
+        load_var.push_back(tok);
+        load_type = "imfrid";
+      } else if (load_type == "fromct") {
+        load_var.push_back(tok);
+        load_type = "imfrct";
+      } else if (find(imp.begin(), imp.end(), load_type) != imp.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected import. (unexpected-import-with-" << load_type << ")\n";
@@ -101,10 +139,25 @@ Program parse(vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "pack";
-      } else if (find(sky.begin(), sky.end(), load_type) != sky.end()) {
+      } else if (find(pck.begin(), pck.end(), load_type) != pck.end()) {
         load_var.clear();
         load_type = "";
         cout << "[" << tok.row << ", " << tok.col << "] unexpected package. (unexpected-pack-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
+    } else if (tok.ttype == 4) {
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        load_var.push_back(tok);
+        load_type = "from";
+      } else if (find(fro.begin(), fro.end(), load_type) != fro.end()) {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected from. (unexpected-from-with-" << load_type << ")\n";
         ok = false;
       } else {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
@@ -158,6 +211,34 @@ Program parse(vector<Token> tlist) {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = PACKCT;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "imfridid") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = FROMII;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "imfrctid") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = FROMCI;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "imfridct") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = FROMIC;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "imfrctct") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = FROMCC;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
