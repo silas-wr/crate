@@ -21,10 +21,10 @@ enum TokenTypes {
   FROM,                  //3
   AS,                    //4
   DEL,                   //5
-  ASSERT,                //6
-  RETURN,                //7
-  UNSIGN,                //8
-  TRANSITIVE,            //9
+  ASSERT,                //6 later (flat complex)
+  RETURN,                //7 later (type simple)
+  UNSIGN,                //8 later (flat complex)
+  TRANSITIVE,            //9 later (flat complex)
   GLOBAL,                //10
 
   // privacy
