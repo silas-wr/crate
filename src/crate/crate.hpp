@@ -154,13 +154,20 @@ enum TokenTypes {
 };
 
 enum NodeTypes {
+  // null
   NUL,
+
+  // bland
   NBLAND,
+
+  // imports
   NIMP,
   NPACK,
   NFROM,
-  NIAS,
-  NFAS,
+  NIAS, // import
+  NFAS, // from import
+
+  // var keywords
   NDEL,
   NGLOB,
 };
