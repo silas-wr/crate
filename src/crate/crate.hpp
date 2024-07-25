@@ -28,126 +28,126 @@ enum TokenTypes {
   GLOBAL,                //10
 
   // privacy
-  PUBLIC,                //11
-  PROTECT,               //12
-  PRIVATE,               //13
-  HIDDEN,                //14
+  PUBLIC,                //11 later (flat complex)
+  PROTECT,               //12 later (flat complex)
+  PRIVATE,               //13 later (flat complex)
+  HIDDEN,                //14 later (flat complex)
 
   // data structures
-  FN,                    //15
-  CLS,                   //16
-  CRT,                   //17
-  STC,                   //18
+  FN,                    //15 later (complex)
+  CLS,                   //16 later (complex)
+  CRT,                   //17 later (complex)
+  STC,                   //18 later (complex)
 
   // control
-  IF,                    //19
-  ELIF,                  //20
-  ELSE,                  //21
-  SWITCH,                //22
-  CASE,                  //23
-  DEFAULT,               //24
-  TRY,                   //25
-  EXCEPT,                //26
-  WHILE,                 //27
-  BREAK,                 //28
-  CONTINUE,              //29
+  IF,                    //19 later (complex)
+  ELIF,                  //20 later (complex)
+  ELSE,                  //21 later (complex)
+  SWITCH,                //22 later (complex)
+  CASE,                  //23 later (complex)
+  DEFAULT,               //24 later (complex)
+  TRY,                   //25 later (complex)
+  EXCEPT,                //26 later (complex)
+  WHILE,                 //27 later (complex)
+  BREAK,                 //28 later (require complex)
+  CONTINUE,              //29 later (require complex)
   
   // type names
-  TCNT,                  //30
-  TNUL,                  //31
-  TCHR,                  //32
-  TSTR,                  //33
-  TBYT,                  //34
-  TSHR,                  //35
-  TINT,                  //36
-  TLNG,                  //37
-  TFLT,                  //38
-  TTYP,                  //39
+  TCNT,                  //30 later (flat complex)
+  TNUL,                  //31 later (flat complex)
+  TCHR,                  //32 later (flat complex)
+  TSTR,                  //33 later (flat complex)
+  TBYT,                  //34 later (flat complex)
+  TSHR,                  //35 later (flat complex)
+  TINT,                  //36 later (flat complex)
+  TLNG,                  //37 later (flat complex)
+  TFLT,                  //38 later (flat complex)
+  TTYP,                  //39 later (flat complex)
 
   // assignment
-  IS,                    //40
-  ATTR,                  //41
-  ENUM,                  //42
-  TYPE,                  //43
-  RTYP,                  //44
+  IS,                    //40 later (flat complex)
+  ATTR,                  //41 later (flat complex)
+  ENUM,                  //42 later (flat complex)
+  TYPE,                  //43 later (flat complex)
+  RTYP,                  //44 later (complex?)
 
   // pointer
-  PNT,                   //45
-  REF,                   //46
+  PNT,                   //45 later (flat complex)
+  REF,                   //46 later (flat complex)
   
   // math
-  SUM,                   //47
-  SUB,                   //48
-  MUL,                   //49
-  DIV,                   //50
-  MOD,                   //51 
-  EXP,                   //52
+  SUM,                   //47 later (flat complex)
+  SUB,                   //48 later (flat complex)
+  MUL,                   //49 later (flat complex)
+  DIV,                   //50 later (flat complex)
+  MOD,                   //51 later (flat complex)
+  EXP,                   //52 later (flat complex)
 
   // bin
-  AND,                   //53
-  OR,                    //54
-  XOR,                   //55
-  NOT,                   //56
-  RSH,                   //57
-  LSH,                   //58
+  AND,                   //53 later (flat complex)
+  OR,                    //54 later (flat complex)
+  XOR,                   //55 later (flat complex)
+  NOT,                   //56 later (flat complex)
+  RSH,                   //57 later (flat complex)
+  LSH,                   //58 later (flat complex)
 
   // compound assignment
   INC,                   //59
   DEC,                   //60
-  PLEQ,                  //61
-  SBEQ,                  //62
-  MLEQ,                  //63
-  DVEQ,                  //64
-  MDEQ,                  //65
-  EXEQ,                  //66
-  ANEQ,                  //67
-  OREQ,                  //68
-  XREQ,                  //69
-  NTEQ,                  //70
-  RSEQ,                  //71
-  LSEQ,                  //72
+  PLEQ,                  //61 later (flat complex)
+  SBEQ,                  //62 later (flat complex)
+  MLEQ,                  //63 later (flat complex)
+  DVEQ,                  //64 later (flat complex)
+  MDEQ,                  //65 later (flat complex)
+  EXEQ,                  //66 later (flat complex)
+  ANEQ,                  //67 later (flat complex)
+  OREQ,                  //68 later (flat complex)
+  XREQ,                  //69 later (flat complex)
+  NTEQ,                  //70 later (flat complex)
+  RSEQ,                  //71 later (flat complex)
+  LSEQ,                  //72 later (flat complex)
 
   // conditional
-  AAND,                  //73
-  OOR,                   //74
+  AAND,                  //73 later (flat complex)
+  OOR,                   //74 later (flat complex)
 
   // comparison
-  GE,                    //75
-  LE,                    //76
-  EQ,                    //77
-  NEQ,                   //78
+  GE,                    //75 later (flat complex)
+  LE,                    //76 later (flat complex)
+  EQ,                    //77 later (flat complex)
+  NEQ,                   //78 later (flat complex)
 
   // generics
-  LAB,                   //79
-  RAB,                   //80
+  LAB,                   //79 later (flat complex)
+  RAB,                   //80 later (flat complex)
 
   // lambda
-  LAM,                   //81
+  LAM,                   //81 later (flat complex)
 
   // params
-  ARGS,                  //82
-  KWARGS,                //83
-  ELLIPSIS,              //84
+  ARGS,                  //82 later (flat complex)
+  KWARGS,                //83 later (flat complex)
+  ELLIPSIS,              //84 later (flat complex)
 
   // objects
-  CHR,                   //85
-  STR,                   //86
-  BYTE,                  //87
-  SHORT,                 //88
-  INT,                   //89
-  LONG,                  //90
-  FLOAT,                 //91
+  CHR,                   //85 later
+  STR,                   //86 later
+  BYTE,                  //87 later
+  SHORT,                 //88 later
+  INT,                   //89 later
+  LONG,                  //90 later
+  FLOAT,                 //91 later
   
   // whitespace
-  TALL,                  //92
-  TERN,                  //93
-  OPAR,                  //94
-  CPAR,                  //95
-  OBRK,                  //96
-  CBRK,                  //97
-  OBRC,                  //98
-  CBRC,                  //99
-  COMM,                  //100
+  TALL,                  //92 later (flat complex)
+  TERN,                  //93 later (flat complex)
+  OPAR,                  //94 later (flat complex)
+  CPAR,                  //95 later (flat complex)
+  OBRK,                  //96 later (flat complex)
+  CBRK,                  //97 later (flat complex)
+  OBRC,                  //98 later (flat complex)
+  CBRC,                  //99 later (flat complex)
+  COMM,                  //100 later (flat complex)
   SEMI,                  //101
   EOL,                   //102
   EOF,                   //103
