@@ -16,3 +16,7 @@ package mypack;
 
 $ from import
 from module import thing;
+
+$ as imports
+import module as mod;
+from module import thing as th;
