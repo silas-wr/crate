@@ -162,6 +162,7 @@ enum NodeTypes {
   NIAS,
   NFAS,
   NDEL,
+  NGLOB,
 };
 
 struct Token {
