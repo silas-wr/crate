@@ -23,3 +23,6 @@ from module import thing as th;
 
 $ delete
 del var;
+
+$ global
+global var;
