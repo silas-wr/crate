@@ -161,6 +161,7 @@ enum NodeTypes {
   NFROM,
   NIAS,
   NFAS,
+  NDEL,
 };
 
 struct Token {
