@@ -159,6 +159,8 @@ enum NodeTypes {
   NIMP,
   NPACK,
   NFROM,
+  NIAS,
+  NFAS,
 };
 
 struct Token {
