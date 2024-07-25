@@ -10,15 +10,17 @@ Program parse(const vector<Token> tlist) {
   // bool complex = false; // For functions, crates, and such things
   bool ok = true;
 
-  vector<string> id {"id", "importr", "packr", "fromg", "fromr"};
+  vector<string> id {"id", "importr", "packr", "fromg", "fromr", "iasr", "fasr"};
   
-  vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr"};
+  vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr", "ias", "fas", "iasr", "fasr"};
   
-  vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr"};
+  vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr"};
   
-  vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr"};
+  vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr"};
+
+  vector<string> as {"", "id", "import", "pack", "packr", "from", "fromg", "imfr", "ias", "fas", "iasr", "fasr"};
   
-  vector<string> semi {"import", "pack", "from", "fromg", "imfr"};
+  vector<string> semi {"import", "pack", "from", "fromg", "imfr", "ias", "fas"};
 
   string load_type = "";
   vector<Token> load_var;
@@ -62,6 +64,11 @@ Program parse(const vector<Token> tlist) {
       } else if (load_type == "imfr") {
         load_var.push_back(tok);
         load_type = "fromr";
+      } else if (load_type == "ias") {
+        load_var.push_back(tok);
+        load_type = "iasr";
+      } else if (load_type == "fas") {
+        load_type = "fasr";
       } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
@@ -119,6 +126,24 @@ Program parse(const vector<Token> tlist) {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
       }
+    } else if (tok.ttype == 4) {
+      eol = false;
+      eof = false;
+      if (load_type == "importr") {
+        load_var.push_back(tok);
+        load_type = "ias";
+      } else if (load_type == "fromr") {
+        load_var.push_back(tok);
+        load_type = "fas";
+      } else if (find(as.begin(), as.end(), load_type) != as.end()) {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected as. (unexpected-as-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
     } else if (tok.ttype == 101) {
       eol = true;
       eof = true;
@@ -153,6 +178,20 @@ Program parse(const vector<Token> tlist) {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = NFROM;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "iasr") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NIAS;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "fasr") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NFAS;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
