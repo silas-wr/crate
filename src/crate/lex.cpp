@@ -177,6 +177,8 @@ vector<Token> lex(const string src)
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
+          load_type = "";
+          load_var = "";
         }
 
         load_type = "alpha";
@@ -221,7 +223,15 @@ vector<Token> lex(const string src)
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
+          
+        load_type = "";
+        load_var = "";
         }
+        
+        load_type = "";
+        load_var = "";
+        load_type = "int";
+        load_var += c;
       } else if (load_type == "period") {
         load_type = "float";
         load_var += c;
@@ -264,6 +274,8 @@ vector<Token> lex(const string src)
         
         load_type = "";
         load_var = "";
+        load_type = "operational";
+        load_var += c;
       } else if (load_type == "int") {
         cur.ttype = INT;
         cur.value = load_var;
@@ -272,6 +284,8 @@ vector<Token> lex(const string src)
         tlist.push_back(cur);
         load_type = "";
         load_var = "";
+        load_type = "operational";
+        load_var += c;
       } else if (load_type == "float") {
         cur.ttype = FLOAT;
         cur.value = load_var;
@@ -280,6 +294,8 @@ vector<Token> lex(const string src)
         tlist.push_back(cur);
         load_type = "";
         load_var = "";
+        load_type = "operational";
+        load_var += c;
       } else if (load_type == "period") {
         cur.ttype = ARGS;
         cur.value = load_var;
@@ -288,6 +304,8 @@ vector<Token> lex(const string src)
         tlist.push_back(cur);
         load_type = "";
         load_var = "";
+        load_type = "operational";
+        load_var += c;
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
@@ -296,6 +314,8 @@ vector<Token> lex(const string src)
         tlist.push_back(cur);
         load_type = "";
         load_var = "";
+        load_type = "operational";
+        load_var += c;
       } else {
         cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable
@@ -312,7 +332,7 @@ vector<Token> lex(const string src)
         load_type = "float";
         load_var += c;
       } else if (load_type == "float") {
-        cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
+        cout << "[" << row << ", " << col << "] Invalid float " << load_var << " .\n";
         ok = false;
         load_type = "";
         load_var = "";
@@ -355,6 +375,9 @@ vector<Token> lex(const string src)
           cur.col = col;
           tlist.push_back(cur);
         }
+
+        load_type = "period";
+        load_var += c;
       } else {
         cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable
