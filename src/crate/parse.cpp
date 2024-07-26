@@ -10,30 +10,30 @@ Program parse(const vector<Token> tlist) {
   // bool complex = false; // For functions, crates, and such things
   bool ok = true;
 
-  vector<string> id {"id", "importr", "packr", "fromg", "fromr", "iasr", "fasr", "delr", "globr", "incr", "decr"};
+  vector<string> id {"id", "importr", "packr", "fromg", "fromr", "iasr", "fasr", "delr", "globr", "incbr", "decbr", "incer", "decer"};
   
   vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr",\
-    "inc", "dec", "incr", "decr"};
+    "incb", "decb", "incbr", "decbr", "incer", "decer"};
   
   vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
-    "globr", "inc", "dec", "incr", "decr"};
+    "globr", "incb", "decb", "incbr", "decbr", "incer", "decer"};
   
   vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
-    "globr", "inc", "dec", "incr", "decr"};
+    "globr", "incb", "decb", "incbr", "decbr", "incer", "decer"};
 
-  vector<string> as {"", "id", "import", "pack", "packr", "from", "fromg", "imfr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr", "inc", "dec",\
-    "incr", "decr"};
+  vector<string> as {"", "id", "import", "pack", "packr", "from", "fromg", "imfr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr", "incb",\
+    "decb", "incbr", "decbr", "incer", "decer"};
 
   vector<string> del {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
-    "globr", "inc", "dec", "incr", "decr"};
+    "globr", "incb", "decb", "incbr", "decbr", "incer", "decer"};
 
   vector<string> glob {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
-    "globr", "inc", "dec", "incr", "decr"};
+    "globr", "incb", "decb", "incbr", "decbr", "incer", "decer"};
 
   vector<string> icdc {"import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr",\
-    "inc", "dec", "incr", "decr"};
+    "incb", "decb", "incbr", "decbr", "incer", "decer"};
   
-  vector<string> semi {"import", "pack", "from", "fromg", "imfr", "ias", "fas", "del", "global", "inc", "dec"};
+  vector<string> semi {"import", "pack", "from", "fromg", "imfr", "ias", "fas", "del", "global", "incb", "decb"};
 
   string load_type = "";
   // string comp_type = "";
@@ -90,6 +90,12 @@ Program parse(const vector<Token> tlist) {
       } else if (load_type == "global") {
         load_var.push_back(tok);
         load_type = "globr";
+      } else if (load_type == "incb") {
+        load_var.push_back(tok);
+        load_type = "incbr";
+      } else if (load_type == "decb") {
+        load_var.push_back(tok);
+        load_type = "decbr";
       } else if (find(id.begin(), id.end(), load_type) != id.end()) {
         load_var.clear();
         load_type = "";
@@ -205,11 +211,11 @@ Program parse(const vector<Token> tlist) {
       eol = false;
       eof = false;
       if (load_type == "") {
-        / load_var.push_back(tok);
-        load_type = "inc";
+        // load_var.push_back(tok);
+        load_type = "incb";
       } else if (load_type == "id") {
         // load_var.push_back(tok);
-        load_type = "incr"
+        load_type = "incer";
       } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
         load_var.clear();
         load_type = "";
@@ -224,10 +230,10 @@ Program parse(const vector<Token> tlist) {
       eof = false;
       if (load_type == "") {
         // load_var.push_back(tok);
-        load_type = "dec";
+        load_type = "decb";
       } else if (load_type == "id") {
         // load_var.push_back(tok);
-        load_type = "decr";
+        load_type = "decer";
       } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
         load_var.clear();
         load_type = "";
@@ -302,17 +308,31 @@ Program parse(const vector<Token> tlist) {
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "incr") {
+      } else if (load_type == "incbr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = NINC;
+        cur.ntype = NINCB;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
-      } else if (load_type == "decr") {
+      } else if (load_type == "incer") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NINCE;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "decbr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = NDEC;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "decer") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NDECE;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
