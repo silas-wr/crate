@@ -10,23 +10,33 @@ Program parse(const vector<Token> tlist) {
   // bool complex = false; // For functions, crates, and such things
   bool ok = true;
 
-  vector<string> id {"id", "importr", "packr", "fromg", "fromr", "iasr", "fasr", "delr", "globr"};
+  vector<string> id {"id", "importr", "packr", "fromg", "fromr", "iasr", "fasr", "delr", "globr", "incr", "decr"};
   
-  vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> imp {"id", "import", "importr", "pack", "packr", "from", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr",\
+    "inc", "dec", "incr", "decr"};
   
-  vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> pck {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
+    "globr", "inc", "dec", "incr", "decr"};
   
-  vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> fro {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
+    "globr", "inc", "dec", "incr", "decr"};
 
-  vector<string> as {"", "id", "import", "pack", "packr", "from", "fromg", "imfr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> as {"", "id", "import", "pack", "packr", "from", "fromg", "imfr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr", "inc", "dec",\
+    "incr", "decr"};
 
-  vector<string> del {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> del {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
+    "globr", "inc", "dec", "incr", "decr"};
 
-  vector<string> glob {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr"};
+  vector<string> glob {"id", "import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global",\
+    "globr", "inc", "dec", "incr", "decr"};
+
+  vector<string> icdc {"import", "importr", "pack", "packr", "from", "fromg", "imfr", "fromr", "ias", "fas", "iasr", "fasr", "del", "delr", "global", "globr",\
+    "inc", "dec", "incr", "decr"};
   
-  vector<string> semi {"import", "pack", "from", "fromg", "imfr", "ias", "fas", "del", "global"};
+  vector<string> semi {"import", "pack", "from", "fromg", "imfr", "ias", "fas", "del", "global", "inc", "dec"};
 
   string load_type = "";
+  // string comp_type = "";
   vector<Token> load_var;
 
   vector<Node> ultimate;
@@ -95,6 +105,12 @@ Program parse(const vector<Token> tlist) {
       if (load_type == "") {
         load_var.push_back(tok);
         load_type = "import";
+      } else if (load_type == "inc") {
+        load_var.push_back(tok);
+        load_type = "incr";
+      } else if (load_type == "dec") {
+        load_var.push_back(tok);
+        load_type = "decr";
       } else if (load_type == "fromg") {
         load_var.push_back(tok);
         load_type = "imfr";
@@ -185,6 +201,42 @@ Program parse(const vector<Token> tlist) {
         cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
         ok = false;
       }
+    } else if (tok.ttype == 59) {
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        / load_var.push_back(tok);
+        load_type = "inc";
+      } else if (load_type == "id") {
+        // load_var.push_back(tok);
+        load_type = "incr"
+      } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected increment. (unexpected-inc-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
+    } else if (tok.ttype == 60) {
+      eol = false;
+      eof = false;
+      if (load_type == "") {
+        // load_var.push_back(tok);
+        load_type = "dec";
+      } else if (load_type == "id") {
+        // load_var.push_back(tok);
+        load_type = "decr";
+      } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
+        load_var.clear();
+        load_type = "";
+        cout << "[" << tok.row << ", " << tok.col << "] unexpected decrement. (unexpected-dec-with-" << load_type << ")\n";
+        ok = false;
+      } else {
+        cout << "[" << tok.row << ", " << tok.col << "] we're so sorry. something went wrong with the parser. tell us at silas-wr/crate on github. (unknown-type-" << load_type << ")\n";
+        ok = false;
+      }
     } else if (tok.ttype == 101) {
       eol = true;
       eof = true;
@@ -247,6 +299,20 @@ Program parse(const vector<Token> tlist) {
         load_var.push_back(tok);
         cur.tokens = load_var;
         cur.ntype = NGLOB;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "incr") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NINC;
+        ultimate.push_back(cur);
+        load_var.clear();
+        load_type = "";
+      } else if (load_type == "decr") {
+        load_var.push_back(tok);
+        cur.tokens = load_var;
+        cur.ntype = NDEC;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
