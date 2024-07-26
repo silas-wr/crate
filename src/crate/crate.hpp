@@ -172,8 +172,10 @@ enum NodeTypes {
   NGLOB,
 
   // increment and decrement
-  NINC,
-  NDEC,
+  NINCB,
+  NINCE,
+  NDECB,
+  NDECE,
 };
 
 struct Token {
