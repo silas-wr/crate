@@ -211,10 +211,10 @@ Program parse(const vector<Token> tlist) {
       eol = false;
       eof = false;
       if (load_type == "") {
-        // load_var.push_back(tok);
+        load_var.push_back(tok);
         load_type = "incb";
       } else if (load_type == "id") {
-        // load_var.push_back(tok);
+        load_var.push_back(tok);
         load_type = "incer";
       } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
         load_var.clear();
@@ -229,10 +229,10 @@ Program parse(const vector<Token> tlist) {
       eol = false;
       eof = false;
       if (load_type == "") {
-        // load_var.push_back(tok);
+        load_var.push_back(tok);
         load_type = "decb";
       } else if (load_type == "id") {
-        // load_var.push_back(tok);
+        load_var.push_back(tok);
         load_type = "decer";
       } else if (find(icdc.begin(), icdc.end(), load_type) != icdc.end()) {
         load_var.clear();
