@@ -170,6 +170,10 @@ enum NodeTypes {
   // var keywords
   NDEL,
   NGLOB,
+
+  // increment and decrement
+  NINC,
+  NDEC,
 };
 
 struct Token {
