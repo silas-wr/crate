@@ -8,6 +8,7 @@ vector<Token> lex(const string src)
   int row = 0;
   int col = 0;
   bool eol = false;
+  bool slash = false;
   bool ok = true;
   
   char c;
@@ -17,8 +18,16 @@ vector<Token> lex(const string src)
 
   string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
   string numeric = "0123456789";
+  string octl = "012345678";
+  string hex = "0123456789ABCDEF";
   string operators = "&|^~!=<>:+-*/%";
   string white = "{[(#?,;)]}\r\t\n ";
+
+  bool unicode = false;
+  bool octal = false;
+
+  int uni = 4;
+  int oct = 3;
 
   map<string, TokenTypes> keys;
 
@@ -141,7 +150,12 @@ vector<Token> lex(const string src)
     if (c == '\n') {
       if (load_type == "comment") {
         load_type = ""; // end of comment
-      }      
+      } else if (load_type == "string") {
+        cout << "[" << row << ", " << col << "] Unexpected EOL (unfinished-str-with-eol)";
+        load_type = "";
+        ok = false;
+        slash = false;
+      }
       col = 0;
       eol = true;
       row += 1;
@@ -152,11 +166,203 @@ vector<Token> lex(const string src)
     // comment
     if (load_type == "comment") {
       ;      
-    } 
+    }
+    // string
+    else if (load_type == "string") {
+      load_var += c;
+      if (c == '\\') {
+        if (slash) {
+          slash = false;
+        } else {
+          slash = true;
+        }
+      } else {
+        if (slash) {
+          if (c == 'u') { 
+            unicode = true; 
+          } else if (c == 'o') {
+            octal = true;
+          } else {
+            if (unicode) {
+              if (hex.find(c) != -1) {
+                uni--;
+                if (uni == 0) {
+                  unicode = false;
+                  uni = 4;
+                }
+              } else {
+                unicode = false;
+                uni = 4;
+                load_type = "";
+                load_var = "";
+
+                cout << "[" << row << ", " << col << "] Non-hexadecimal character in unicode sequence (bad-unicode)."
+              }
+            } else if (octal) {
+              if (octl.find(c) != -1) {
+                oct--;
+                if (oct == 0) {
+                  octal = false;
+                  oct = 3;
+                }
+              } else {
+                octal = false;
+                oct = 3;
+                load_type = "";
+                load_var = "";
+
+                cout << "[" << row << ", " << col << "] Non-octal character in octal sequence (bad-octal)."
+              }
+            } else {
+              slash = false;
+            }
+          }
+        } else {
+          if (c == '"') {
+            cur.ttype = STR;        
+            cur.value = load_var;  
+            cur.row = row;
+            cur.col = col;
+            tlist.push_back(cur);
+          }
+        }
+      }
+
+      load_var += c;
+    }
     // start of comment
-    else if (c == '$') {      
+    else if (c == '$') { 
+      if (load_type == "") {
+        ;
+      } else if (load_type == "alpha") {
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys[load_var];
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        } else {
+          cur.ttype = ID;
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        }
+      } else if (load_type == "int") {
+        cur.ttype = INT;        
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "float") {
+        cur.ttype = FLOAT;        
+        cur.value = load_var;  
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "operational") {
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops[load_var];
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        } else {
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
+          ok = false;
+          load_type = "";
+          load_var = "";
+        }
+      } else if (load_type == "period") {
+        cur.ttype = ARGS;
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "splat") {
+        cur.ttype = KWARGS;
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else {
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        ok = false; // make it uncompilable
+        load_type = "";
+        load_var = "";
+      }
+      
+      load_type = "";
+      load_var = "";
       load_type = "comment";      
     } 
+    // start of string
+    else if (c == '"') {
+      if (load_type == "") {
+        ;
+      } else if (load_type == "alpha") {
+        if (keys.find(load_var) != keys.end()) {
+          cur.ttype = keys[load_var];
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        } else {
+          cur.ttype = ID;
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        }
+      } else if (load_type == "int") {
+        cur.ttype = INT;        
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "float") {
+        cur.ttype = FLOAT;        
+        cur.value = load_var;  
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "operational") {
+        if (ops.find(load_var) != ops.end()) {
+          cur.ttype = ops[load_var];
+          cur.value = load_var;
+          cur.row = row;
+          cur.col = col;
+          tlist.push_back(cur);
+        } else {
+          cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
+          ok = false;
+          load_type = "";
+          load_var = "";
+        }
+      } else if (load_type == "period") {
+        cur.ttype = ARGS;
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else if (load_type == "splat") {
+        cur.ttype = KWARGS;
+        cur.value = load_var;
+        cur.row = row;
+        cur.col = col;
+        tlist.push_back(cur);
+      } else {
+        cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
+        ok = false; // make it uncompilable
+        load_type = "";
+        load_var = "";
+      }
+      
+      load_type = "";
+      load_var = "";
+      load_type = "string";
+      load_var += c;
+    }
     // alphabetical
     else if (alphabet.find(c) != -1) {
       if (load_type == "" | load_type == "alpha") {
