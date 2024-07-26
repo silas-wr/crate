@@ -28,7 +28,7 @@ $ global
 global var;
 
 $ increment/decrement
-var++;
 ++var;
-var--;
+var++;
 --var;
+var--;
