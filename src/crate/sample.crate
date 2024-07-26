@@ -2,6 +2,8 @@ $ Let's hope it works!
 $ By the way, some of the keywords (like assert) will come later, due to more complex parsing functions involved
 $ Also, there are no more constant identifiers. I got rid of them from the lexer.
 
+$ Just fixed a minor issue with the lexer.
+
 $ null statement
 ;
 
