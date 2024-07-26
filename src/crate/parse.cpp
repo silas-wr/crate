@@ -325,7 +325,7 @@ Program parse(const vector<Token> tlist) {
       } else if (load_type == "decbr") {
         load_var.push_back(tok);
         cur.tokens = load_var;
-        cur.ntype = NDEC;
+        cur.ntype = NDECB;
         ultimate.push_back(cur);
         load_var.clear();
         load_type = "";
