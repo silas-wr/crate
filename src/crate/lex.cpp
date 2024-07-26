@@ -196,7 +196,7 @@ vector<Token> lex(const string src)
                 load_type = "";
                 load_var = "";
 
-                cout << "[" << row << ", " << col << "] Non-hexadecimal character in unicode sequence (bad-unicode)."
+                cout << "[" << row << ", " << col << "] Non-hexadecimal character in unicode sequence (bad-unicode).";
               }
             } else if (octal) {
               if (octl.find(c) != -1) {
@@ -211,7 +211,7 @@ vector<Token> lex(const string src)
                 load_type = "";
                 load_var = "";
 
-                cout << "[" << row << ", " << col << "] Non-octal character in octal sequence (bad-octal)."
+                cout << "[" << row << ", " << col << "] Non-octal character in octal sequence (bad-octal).";
               }
             } else {
               slash = false;
