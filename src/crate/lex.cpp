@@ -190,6 +190,10 @@ vector<Token> lex(const string src)
         cur.row = row;
         cur.col = col;
         tlist.push_back(cur);
+        load_type = "";
+        load_var = "";
+        load_type = "alpha";
+        load_var += c;
       } else if (load_type == "splat") {
         cur.ttype = KWARGS;
         cur.value = load_var;
@@ -199,6 +203,8 @@ vector<Token> lex(const string src)
 
         load_type = "";
         load_var = "";
+        load_type = "alpha";
+        load_var += c;
       } else {
         cout << "[" << row << ", " << col << "] we're so sorry. something went wrong with the lexical analyzer. \n\tplease notify me at silas-wr/crate on github.\n";
         ok = false; // make it uncompilable    
@@ -223,9 +229,8 @@ vector<Token> lex(const string src)
         } else {
           cout << "[" << row << ", " << col << "] Invalid operator " << load_var << " .\n";
           ok = false;
-          
-        load_type = "";
-        load_var = "";
+          load_type = "";
+          load_var = "";
         }
         
         load_type = "";
@@ -361,6 +366,10 @@ vector<Token> lex(const string src)
           load_type = "";
           load_var = "";
         }
+        load_type = "";
+        load_var = "";
+        load_type = "period";
+        load_var += c;
       } else if (load_type == "alpha") {
         if (keys.find(load_var) != keys.end()) {
           cur.ttype = keys[load_var];
@@ -376,6 +385,8 @@ vector<Token> lex(const string src)
           tlist.push_back(cur);
         }
 
+        load_type = "";
+        load_var = "";
         load_type = "period";
         load_var += c;
       } else {
