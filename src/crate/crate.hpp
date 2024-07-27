@@ -199,7 +199,7 @@ vector<Token> lex(const string);
 Program parse(const vector<Token>);
 int compile(Program);
 int run(string);
-int strparse(string);
+string strparse(string);
 int numparse(string);
 void nodes(Node, int);
 void prog(Program);

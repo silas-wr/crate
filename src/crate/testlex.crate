@@ -117,7 +117,7 @@ $ params
 ...
 
 $ objects
-$ 'a'
+'a'
 "hello"
 $ 1
 $ 12
